@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import http from 'axios'
 
 import Map from './Map'
+import StopList from './StopList';
 import './assets/css/bootstrap.min.css'
-import './assets/font-awesome/css/font-awesome.min.css'
 
 class App extends Component {
   constructor () {
@@ -39,6 +39,13 @@ class App extends Component {
     })
   }
 
+  stopsElement () {
+    let stops = this.state.stops.map((element, index) => {
+      return <StopList key={index} stop={element} />
+    })
+    return stops
+  }
+
   render() {
     return (
       <div className="container-fluid">
@@ -57,6 +64,7 @@ class App extends Component {
         </nav>
 
         <Map isMarkerShown handleMapMarker={(a,b) => this.handleMapMarker(a,b)} lat={this.state.lat} lng={this.state.lng} stops={this.state.stops} />
+        {this.stopsElement()}
       </div>
     );
   }
