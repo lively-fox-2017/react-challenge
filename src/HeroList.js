@@ -17,7 +17,7 @@ class HeroList extends Component {
       );
     }
 
-    return <h1>Please Wait...</h1>
+    return <p className="text-muted">Please Wait...</p>
   }
 }
 
