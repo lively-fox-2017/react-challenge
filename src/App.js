@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
+import bulma from '../node_modules/bulma/css/bulma.css'
+import style from './style.css'
 
 class App extends Component {
   constructor() {
@@ -35,13 +37,13 @@ class App extends Component {
           <h1 className="App-title">Welcome Nasa Data Portal</h1>
         </header>
         
-        <p className="App-intro">
-          <h3>{this.state.title}</h3>
+        <div className="container">
+          <h1>{this.state.title}</h1>
+          <img class="image is-256x256" src={this.state.url} alt="{this.state.url}"/>
           <p>{this.state.explanation}</p>
-          <img src={this.state.url} alt="{this.state.url}"/>
           <br/>
           <i>{this.state.date}</i>
-        </p>
+        </div>
       </div>
     );
   }
