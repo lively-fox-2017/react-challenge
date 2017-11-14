@@ -3,7 +3,6 @@ import axios from 'axios'
 import logo from './logo.svg';
 import './App.css';
 
-// const data=[1,2,3,4,5,6]
 
 class App extends Component {
   constructor() {
@@ -33,7 +32,7 @@ class App extends Component {
         <ul>
           { this.state.articles.map((item)=>{
             return (
-              <li>{item.description} </li>
+              <li><img src={item.urlToImage} alt="" /> {item.description} </li>
             )
           })}
         </ul>
