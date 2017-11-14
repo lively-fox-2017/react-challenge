@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import MovieDetail from './MovieDetail';
 import Header from './Header';
+import SearchMovie from './SearchMovie';
 
 class App extends Component {
 
@@ -12,8 +13,8 @@ class App extends Component {
           <Header/>
         </header>
         <MovieDetail/>
-        <div className="row">
-
+        <div>
+          <SearchMovie/>
         </div>
       </div>
     );
