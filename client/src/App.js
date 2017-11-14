@@ -9,6 +9,8 @@ import YTSearch from 'youtube-api-search'
 
 //component
 import Content from './components/Content'
+import VideoList from './components/VideoList'
+
 
 const API_KEY = 'AIzaSyCa8B0c1rnbPHvSpZrglHaYs6-vgGXdxCg'
 
@@ -18,7 +20,7 @@ class App extends Component {
     this.state = {video: []}
   }
   componentWillMount() {
-    YTSearch({key: API_KEY, term: 'surfboards'}, (data) => {
+    YTSearch({key: API_KEY, term: 'dota'}, (data) => {
      this.setState({
        video: data
      })
@@ -27,13 +29,18 @@ class App extends Component {
   }
   render() {
     console.log(this.state.video)
-    return (
-      <div className="App">
-          <h1>Welcome to API Youtube</h1>
-          <img src={logo} className="App-logo" alt="logo" />
-          <Content video={ this.state.video } />
-      </div>
-    );
+    if (this.state.video.length) {
+      return (
+        <div className="App">
+            <h1>Welcome to API Youtube</h1>
+            <img src={logo} className="App-logo" alt="logo" />
+            <Content />
+            <VideoList videos={ this.state.video } />
+        </div>
+      );
+    }
+
+    return <h1>Tunggu bentar bos</h1>;
   }
 }
 
