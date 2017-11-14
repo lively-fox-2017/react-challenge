@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import logo from './logo.svg';
 import './App.css';
-
+import { BrowserRouter as Router, Route , Link} from 'react-router-dom'
+import ArticleList from './ArticleList'
+import ArticleItem from './ArticleItem'
 
 class App extends Component {
   constructor() {
@@ -22,21 +24,30 @@ class App extends Component {
     })
   }
 
+  datadetail(props){
+    return this.state.articles[props.match.params.id]
+    // console.log(this.state.articles[props.match.params.id]);
+  }
+
   render() {
     return (
+      <Router>
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Game News</h1>
-        </header>
-        <ul>
-          { this.state.articles.map((item)=>{
-            return (
-              <li><img src={item.urlToImage} alt="" /> {item.description} </li>
-            )
-          })}
-        </ul>
+        <div class="btn-group btn-group-justified">
+        <Link to="/" className ="btn btn-default">Home</Link>
       </div>
+        <header className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+            <h1 className="App-title">Game News</h1>
+        </header>
+          <Route exact path="/" component={ ()=>
+            <ArticleList Articles = {this.state.articles} />}
+          />
+          <Route exact path="/:id" component={(props)=>
+            <ArticleItem Article = {this.datadetail(props)} />}
+          />
+      </div>
+      </Router>
     );
   }
 }
