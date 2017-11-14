@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import axios from 'axios'
 import './App.css';
+
+import {
+  BrowserRouter as Router,
+  Route
+} from 'react-router-dom'
+
+import Navigation from './navigation.js'
+import Articles from './ArticleList.js'
+import Article from './article.js'
 
 class App extends Component {
   constructor() {
@@ -27,36 +35,13 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <nav className="navbar navbar-inverse">
-          <div className="container-fluid">
-            <div className="navbar-header">
-              <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
-                <span className="sr-only">Toggle navigation</span>
-                <span className="icon-bar"></span>
-                <span className="icon-bar"></span>
-                <span className="icon-bar"></span>
-              </button>
-              <img src={logo} className="App-logo" alt="logo" />
-              <span style={{fontSize: 28 + 'px', color: 'white'}}>News Site boy</span>
-            </div>
-          </div>
-        </nav>
-
-        <div className="App-intro">
-          <div className="list-group col-md-3 text-left">
-            {this.state.news.map((article) => {
-              return (
-                <a href="#" className="list-group-item">
-                  <h3 className="list-group-item-heading">{ article.title }</h3>
-                  <p className="list-group-item-text">{ article.description.substring(0, 70) } ...</p>
-                </a>
-              )
-            })}
-          </div>
+      <Router>
+        <div className="App">
+          <Navigation />
+          <Articles news={ this.state.news } />
+          <Route exact path="/article/:id" render={ Article } />
         </div>
-
-      </div>
+      </Router>
     );
   }
 }
