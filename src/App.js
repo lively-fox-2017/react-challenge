@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import MovieDetail from './MovieDetail';
+import Header from './Header';
 
 class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="App container-fluid">
         <header className="App-header">
-          <span className="logo">ATOM</span>
-          <img src={logo} className="App-logo" alt="logo" />
-          <span className="logo">MOVIE</span>
+          <Header/>
         </header>
         <MovieDetail/>
+        <div className="row">
+
+        </div>
       </div>
     );
   }

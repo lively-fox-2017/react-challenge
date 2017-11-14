@@ -15,7 +15,7 @@ class MovieDetail extends Component {
   }
 
   fetchMovieByTitle() {
-    axios.get('http://www.omdbapi.com/?i=tt3896198&apikey=d152fbcf')
+    axios.get('http://www.omdbapi.com/?i=tt1856101&apikey=d152fbcf')
     .then(({ data }) => {
 
       this.setState({
@@ -35,8 +35,9 @@ class MovieDetail extends Component {
 
   render() {
     return (
-      <div className="container">
-        <h1>{this.state.title}</h1>
+      <div className="container mt-4">
+        <h1>Hot Movie</h1>
+        <h2 className="text-left">{this.state.title}</h2>
         <div className="row">
           <div className="col-md-4">
             <img  src={this.state.poster} alt={this.state.poster}></img>
