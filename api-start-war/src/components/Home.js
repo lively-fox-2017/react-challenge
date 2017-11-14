@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import axios from 'axios'
 
+import Content from './Content'
+
 export default class Home extends Component{
   constructor () {
     super();
@@ -25,12 +27,15 @@ export default class Home extends Component{
 
   render () {
     return (
-      <div>
+      <div class="row">
         <h2> start war </h2>
         <ul>
           <li>Nama: {this.state.starWars.name}</li>
           <li>Jenis kelamin : {this.state.starWars.gender}</li>
         </ul>
+        <Content
+          test={this.state.starWars}
+        />
       </div>
     )
   }

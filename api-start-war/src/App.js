@@ -12,7 +12,6 @@ export default class App extends Component {
     return (
       <BrowserRouter>
         <div>
-
           <Navbar/>
           <div class="container">
             <Route exact path="/" component={Home} />
@@ -22,5 +21,4 @@ export default class App extends Component {
       </BrowserRouter>
     )
   }
-
 }
