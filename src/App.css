@@ -22,6 +22,24 @@
   font-size: large;
 }
 
+.recipee-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.recipee-wrapper div {
+  width: 70%;
+}
+
+.recipee-wrapper a {
+  width: 15%;
+}
+.recipee-wrapper:last-child {
+  margin-bottom: 0;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

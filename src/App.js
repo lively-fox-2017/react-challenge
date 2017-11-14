@@ -1,18 +1,44 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import axios from 'axios'
 import './App.css';
 
+import Recipee from './Recipee';
+
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      recipees: [],
+      loading: true
+    };
+  }
+
+  getRecipees() {
+    const proxyURL = 'https://cors-anywhere.herokuapp.com/';
+    const apiURL = 'http://www.recipepuppy.com/api/';
+
+    return axios.get(proxyURL + apiURL)
+  }
+
+  componentDidMount() {
+    this.getRecipees()
+    .then(response => {
+      const newState = { recipees: response.data.results, loading: false };
+      this.setState(newState);
+    })
+    .catch(err => {
+      alert(err)
+    })
+  }
+
   render() {
+    const isLoading = this.state.loading;
+    const recipees = this.state.recipees.map(recipee => <Recipee recipee={recipee}/>)
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        {isLoading && <h1>Loading ...</h1>}
+        {!isLoading && <div>{recipees}</div>}
       </div>
     );
   }
