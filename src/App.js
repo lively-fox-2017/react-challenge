@@ -1,24 +1,62 @@
 import React, { Component } from 'react'
+import http from 'axios'
+
+import Map from './Map'
 import './assets/css/bootstrap.min.css'
+import './assets/font-awesome/css/font-awesome.min.css'
 
 class App extends Component {
+  constructor () {
+    super()
+
+    this.state = {
+      lat: -6.260721,
+      lng: 106.7810405,
+      stops: []
+    }
+  }
+
+  componentWillMount () {
+    http.get(`http://api-ext.trafi.com/stops/nearby?lat=${this.state.lat}&lng=${this.state.lng}&api_key=a32a077fd5d96f1590e891228beed762`)
+      .then(({data}) => {
+        this.setState({
+          stops: data.Stops
+        })
+      })
+  }
+
+  handleMapMarker (lat, lng) {
+    this.setState({
+      lat: lat,
+      lng: lng
+    }, function () {
+      http.get(`http://api-ext.trafi.com/stops/nearby?lat=${this.state.lat}&lng=${this.state.lng}&api_key=a32a077fd5d96f1590e891228beed762`)
+        .then(({data}) => {
+          this.setState({
+            stops: data.Stops
+          })
+        })
+    })
+  }
+
   render() {
     return (
       <div className="container-fluid">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-          <a class="navbar-brand" href="#">Main API</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+        <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+          <a className="navbar-brand">Main API</a>
+          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
           </button>
-
-          <div class="collapse navbar-collapse" id="navbarColor01">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          <div className="collapse navbar-collapse" id="navbarColor01">
+            <ul className="navbar-nav mr-auto">
+              <li className="nav-item active">
+                <a className="nav-link">Home <span className="sr-only">(current)</span></a>
               </li>
             </ul>
           </div>
         </nav>
+
+        <Map isMarkerShown handleMapMarker={(a,b) => this.handleMapMarker(a,b)} lat={this.state.lat} lng={this.state.lng} stops={this.state.stops} />
       </div>
     );
   }
