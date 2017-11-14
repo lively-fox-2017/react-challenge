@@ -1,9 +1,15 @@
 import React from 'react'
 import VideoListItem from './VideoListItem'
-
+import { Link } from 'react-router-dom'
 const VideoList = (props) => {
   const videoItems = props.videos.map((video) => {
-    return  <VideoListItem key={ video.etag } video={video} />
+    // let routerTo = `/view/:${video.etag}`
+    return <div><Link to='/view' > <VideoListItem
+      onSelect={ props.onSelect }
+      key={ video.etag }
+      video={video} />
+    </Link>
+    </div>
   })
   console.log(videoItems);
   return (
