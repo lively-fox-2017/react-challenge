@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import { Link } from 'react-router-dom'
 
 export default class Navbar extends Component{
   render(){
@@ -9,10 +10,12 @@ export default class Navbar extends Component{
             <a class="navbar-brand" href="#">WebSiteName</a>
           </div>
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">Page 1</a></li>
-            <li><a href="#">Page 2</a></li>
-            <li><a href="#">Page 3</a></li>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/topic">Tpoic</Link>
+            </li>
           </ul>
         </div>
       </nav>

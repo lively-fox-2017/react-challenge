@@ -1,38 +1,25 @@
 import React, {Component} from 'react'
-import axios from 'axios'
+import { BrowserRouter, Route } from 'react-router-dom'
+// import axios from 'axios'
 
 import Navbar from './components/Navbar'
+import Home from './components/Home'
+import Topic from './components/Topic'
 
 export default class App extends Component {
-  constructor () {
-    super();
-    this.state = {
-      statrWar: []
-    }
-  }
-
-  componentWillMount () {
-    axios.get('https://swapi.co/api/people/1/')
-    .then(({ data }) => {
-      console.log('ini ', data)
-      this.setState({
-        statrWar: data
-      })
-      console.log('state', this.state.statrWar);
-    })
-    .catch((err) => {
-      console.error(err)
-    })
-  }
 
   render () {
     return (
-      <div>
-        <Navbar/>
-        <ul>
-          <li>{this.state.statrWar.name}</li>
-        </ul>
-      </div>
+      <BrowserRouter>
+        <div>
+
+          <Navbar/>
+          <div class="container">
+            <Route exact path="/" component={Home} />
+            <Route path="/topic" component={Topic} />
+          </div>
+        </div>
+      </BrowserRouter>
     )
   }
 
