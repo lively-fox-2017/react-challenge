@@ -9,6 +9,8 @@ class MovieDetail extends Component {
       actors: '',
       director: '',
       genre: '',
+      poster: '',
+      released: '',
     }
   }
 
@@ -21,6 +23,8 @@ class MovieDetail extends Component {
         actors: data.Actors,
         director: data.Director,
         genre: data.Genre,
+        poster: data.Poster,
+        released: data.Released,
       })
     })
   }
@@ -31,12 +35,29 @@ class MovieDetail extends Component {
 
   render() {
     return (
-      <div>
-        <h1>asd</h1>
-        {this.state.title}
-        {this.state.actors}
-        {this.state.director}
-        {this.state.genre}
+      <div className="container">
+        <h1>{this.state.title}</h1>
+        <div className="row">
+          <div className="col-md-4">
+            <img  src={this.state.poster} alt={this.state.poster}></img>
+          </div>
+
+          <div className="col-md-5">
+            <ul  className="list-group">
+              <li className="text-left list-group-item"><strong>Director: </strong> {this.state.director}</li>
+              <li className="text-left list-group-item"><strong>Actors: </strong> {this.state.actors}</li>
+              <li className="text-left list-group-item"><strong>Genre: </strong> {this.state.genre}</li>
+              <li className="text-left list-group-item"><strong>Released Date: </strong> {this.state.released}</li>
+            </ul>
+          </div>
+
+          <div className="col-md-3">
+            Ads
+            <img width="100%" src="http://www.designyourway.net/blog/wp-content/uploads/2010/11/Nike-Print-Ads-12.jpg"></img>
+          </div>
+
+        </div>
+
       </div>
     )
   }
