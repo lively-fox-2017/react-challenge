@@ -1,10 +1,12 @@
 //Dependencies
 import React, {Component} from 'react';
 import axios from 'axios'
+import { BrowserRouter, Route, Link } from 'react-router-dom'
 
 //Component File
 import CityList from './CityList';
 import MyForecast from './MyForecast';
+import ForecastDetail from './ForecastDetail';
 
 //Css File
 import './App.css';
@@ -30,7 +32,7 @@ class App extends Component {
     this.state = {
       cityName: '',
       weather: {
-        name: '',
+        name: 'Still Waiting...',
         main: {
           temp: '',
           humidity: ''
@@ -54,7 +56,8 @@ class App extends Component {
         }
       ]
     }
-    this.setCityName = this.setCityName.bind(this)
+    // this.setCityName = this.setCityName.bind(this)
+    // this.getWeatherByCity = this.getWeatherByCity.bind(this)
   }
   getWeatherByLocation() {
     var position = navigator.geolocation.getCurrentPosition((pos) => {
@@ -67,8 +70,10 @@ class App extends Component {
       })
     })
   }
-  getWeatherByCity() {
+  getWeatherByCity(e) {
+    e.preventDefault()
     axios.get('http://api.openweathermap.org/data/2.5/weather?q=' + this.state.cityName + '&APPID=2cd58962203b9095d5775fe5e666ee31&units=metric').then((data) => {
+      console.log(data.data)
       this.setState({weather: data.data})
     }).catch((err) => {
       console.log(err)
@@ -79,7 +84,6 @@ class App extends Component {
       this.setState({
         weathers: data.data.list
       })
-      console.log(data.data.list)
     }).catch((err) => {
       console.log(err);
     })
@@ -146,24 +150,29 @@ class App extends Component {
     }
   }
   setCityName(e) {
-    console.log(e.target.value)
     this.setState({cityName: e.target.value})
   }
-  redirectToDetail(index) {
-    console.log(index)
+  findWeather(city) {
+    var index = this.state.weathers.findIndex(weather => {
+      if(weather.name === city) {
+        return weather
+      }
+    })
+    return this.state.weathers[index]
   }
   render() {
     return (
-      <div className="App">
+      <BrowserRouter>
+      <div className="App" style={{overflow:'hidden', width:'100%'}}>
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo"/>
+          <Link to={'/'}><img src={logo} className="App-logo" alt="logo"/></Link>
           <h1 className="App-title">Welcome to React Weather</h1>
         </header>
         <div className="container">
           <div className="hero" data-bg-image="images/banner.png">
             <div className="container">
-              <form action="#" className="find-location" onSubmit={() => this.getWeatherByCity()}>
-                <input type="text" placeholder="Find your location..." onChange={this.setCityName}/>
+              <form action="#" className="find-location" onSubmit={(e) => this.getWeatherByCity(e)}>
+                <input type="text" placeholder="Find your location..." onChange={(e) => this.setCityName(e)}/>
                 <input type="submit" value="Find"/>
               </form>
             </div>
@@ -171,14 +180,17 @@ class App extends Component {
           <MyForecast day={this.getDay()} icon={this.getWeatherIcon()} weather={this.state.weather}/>
           <main className="main-content">
             <div className="fullwidth-block">
-              <CityList weathers={this.state.weathers}/>
+
+                <div>
+                  <Route exact path="/" render={()=><CityList weathers={this.state.weathers}/>}></Route>
+                  <Route path="/:city" render={({match})=><ForecastDetail weather={this.findWeather(match.params.city)} />}></Route>
+                </div>
+
             </div>
           </main>
-          <p className="App-intro">
-            {JSON.stringify(this.state.weathers)}
-          </p>
         </div>
       </div>
+      </BrowserRouter>
     );
   }
 }

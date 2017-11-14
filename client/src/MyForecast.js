@@ -33,8 +33,7 @@ class MyForecast extends React.Component {
               </div>
             </div>
           </div>
-        </div><br/>
-        <br/>
+        </div>
       </div>
     )
   }
