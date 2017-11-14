@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
-import axios from 'axios'
-import './App.css';
+import axios from 'axios';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
-import Recipee from './Recipee';
+import Nav from './components/Nav';
+import Home from './components/Home';
+import Recipee from './components/Recipee';
+
+import './App.css';
 
 class App extends Component {
   constructor() {
@@ -23,23 +27,35 @@ class App extends Component {
   componentDidMount() {
     this.getRecipees()
     .then(response => {
-      const newState = { recipees: response.data.results, loading: false };
-      this.setState(newState);
+      const recipees = response.data.results.map((recipee, idx) => {
+        recipee.id = idx;
+        return recipee;
+      });
+      this.setState({ recipees: recipees, loading: false });
     })
     .catch(err => {
       alert(err)
     })
   }
 
+  findOne(id) {
+    const recipees = this.state.recipees
+    const recipee =  recipees.find(recipee => Number(id) === recipee.id)
+    return recipee
+  }
+
   render() {
     const isLoading = this.state.loading;
-    const recipees = this.state.recipees.map(recipee => <Recipee recipee={recipee}/>)
+    const recipees = this.state.recipees;
 
     return (
-      <div>
-        {isLoading && <h1>Loading ...</h1>}
-        {!isLoading && <div>{recipees}</div>}
-      </div>
+      <Router>
+        <div>
+          <Nav/>
+          <Route exact path='/' render={() => <Home isLoading={isLoading} recipees={recipees}/>} />
+          <Route path='/recipee/:id' render={({match}) => <Recipee recipee={this.findOne(match.params.id)}/>} />
+        </div>
+      </Router>
     );
   }
 }

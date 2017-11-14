@@ -1,32 +1,42 @@
-.App {
-  text-align: center;
+nav {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 32px 0px;
 }
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+nav img {
+  width: 128px;
 }
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.recipee-list-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-.recipee-wrapper {
+.recipee-list-wrapper .recipee-item {
+  width: 40%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 16px;
+  border: 1px solid #cdcdcd;
+}
+.recipee-list-wrapper .recipee-item img {
+  width: 100px;
+  margin-right: 36px;
+}
+.recipee-list-wrapper .recipee-item h2 {
+  font-size: 16px;
+  color: teal;
+  list-style-type: none;
+}
+.recipee-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+.recipee-wrapper img {
+  width: 100px;
 }
 
 .recipee-wrapper div {
@@ -38,9 +48,4 @@
 }
 .recipee-wrapper:last-child {
   margin-bottom: 0;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
 }
