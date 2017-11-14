@@ -23,7 +23,7 @@ class SearchMovie extends Component {
     const listMovie = [];
     for (let movie of this.state.movResult) {
       let temp = (
-        <MovieListFragment type={movie.Type} title={movie.Title} poster={movie.Poster} year={movie.Year} key={movie.imdbID}/>
+        <MovieListFragment id={movie.imdbID} type={movie.Type} title={movie.Title} poster={movie.Poster} year={movie.Year} key={movie.imdbID}/>
       )
       listMovie.push(temp)
     }

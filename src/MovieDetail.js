@@ -14,29 +14,41 @@ class MovieDetail extends Component {
     }
   }
 
-  fetchMovieByTitle() {
-    axios.get('http://www.omdbapi.com/?i=tt1856101&apikey=d152fbcf')
+  fetchMovieById() {
+    let link = 'http://www.omdbapi.com/?i=tt1856101&apikey=d152fbcf'
+    // console.log(this.props.match.params.id);
+    if (this.props.match.params.hasOwnProperty('id')) {
+      link = `http://www.omdbapi.com/?i=${this.props.match.params.id}&apikey=d152fbcf`;
+    }
+    axios.get(link)
     .then(({ data }) => {
+      console.log('------2');
+      // console.log(data.Response);
+      if (data.Response !== false) {
 
-      this.setState({
-        title: data.Title,
-        actors: data.Actors,
-        director: data.Director,
-        genre: data.Genre,
-        poster: data.Poster,
-        released: data.Released,
-      })
+          console.log('------3');
+        this.setState({
+          title: data.Title,
+          actors: data.Actors,
+          director: data.Director,
+          genre: data.Genre,
+          poster: data.Poster,
+          released: data.Released,
+        })
+      }
+
     })
   }
 
   componentDidMount() {
-    this.fetchMovieByTitle();
+    this.fetchMovieById();
+    console.log('------1',this.props.match.params);
+    // if (this.props.match.params)
   }
 
   render() {
     return (
       <div className="container mt-4">
-        <h1>Hot Movie</h1>
         <h2 className="text-left">{this.state.title}</h2>
         <div className="row">
           <div className="col-md-4">
