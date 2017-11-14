@@ -39,7 +39,9 @@ class App extends Component {
         <div className="App">
           <Navigation />
           <Articles news={ this.state.news } />
-          <Route exact path="/article/:id" render={ Article } />
+          <Route exact path="/article/:title" render={ (match) => (
+            <Article detailArticle={this.state.news} param={match} />
+          )} />
         </div>
       </Router>
     );

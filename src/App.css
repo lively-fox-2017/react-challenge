@@ -1,3 +1,16 @@
+*{
+  font-family: 'Poiret One', cursive;
+  color: black;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poiret One', cursive;
+}
+
+.isi{
+  font-weight: bold;
+}
+
 .App {
   text-align: center;
 }
@@ -17,10 +30,18 @@
 
 .App-title {
   font-size: 1.5em;
+  font-family: 'Poiret One', cursive;
 }
 
 .App-intro {
   font-size: large;
+}
+
+.box{
+  box-shadow: 1px 1px 10px 3px red;
+  -webkit-box-shadow: 1px 1px 10px 3px red;
+  -moz-box-shadow: 1px 1px 10px 3px red;
+  -o-box-shadow: 1px 1px 10px 3px red;
 }
 
 @keyframes App-logo-spin {
