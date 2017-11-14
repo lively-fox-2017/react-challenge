@@ -2,22 +2,10 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios'
 // import {Link, Route, Router} from 'react-router'
-import Daftarberita from './components/daftarberita'
-import Beritasatuannews from './components/beritasatuannews'
-import Beritasatuannewsmtv from './components/beritasatuannewsmtv'
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom'
-// import { BrowserRouter, Route, Link } from 'react-router-dom'
-// var browserRouter = require('react-router-dom').BrowserRouter
-// var route = require('react-router-dom').Route
-// var link = require('react-router-dom').Link
 
 class App extends Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
     this.state = {
       news: [],
       newsmtv: []
@@ -30,7 +18,6 @@ class App extends Component {
     .then(function (response) {
       const news = response.data.articles
       self.setState({news})
-      // console.log(self.state.news)
     })
     .catch(function (error) {
       console.log(error);
@@ -49,18 +36,35 @@ class App extends Component {
 
 
   render() {
+      var listTitle = [];
+      for (var i = 0; i < this.state.news.length-5; i++) {
+        listTitle.push(<div><div className="col-xs-6">
+        <h5><b>{this.state.news[i].title}</b></h5>
+        <p><b>{this.state.news[i].author}</b></p>
+        </div>
+        <div className="col-xs-6">
+        <img className="gambar img-responsive" src={this.state.news[i].urlToImage} alt=""/>
+        </div></div>);
+      }
     return (
       <div className="App">
         <div className="container">
-
-        <Router>
-        <div>
-        <Route exact path="/" render={(props) => ( <Daftarberita news={this.state.news} newsmtv={this.state.newsmtv}/> )} />
-        <Route exact path="/news/:id" render={(props) => ( <Beritasatuannews news={this.state.news}/> )}/>
-        <Route path="/newsmtv/:id" render={(props) => ( <Beritasatuannewsmtv newsmtv={this.state.news}/> )}/>
-        </div>
-        </Router>
-
+          <div className="col-md-6">
+          {listTitle}
+          </div>
+          {this.state.newsmtv.map((data) => {
+            return (
+              <div className="col-md-6">
+              <div className="col-xs-6">
+              <h5><b>{data.title}</b></h5>
+              <p><b>{data.author}</b></p>
+              </div>
+              <div className="col-xs-6">
+              <img className="gambar img-responsive" src={data.urlToImage} alt=""/>
+              </div>
+              </div>
+            )
+          })}
         </div>
       </div>
     );
