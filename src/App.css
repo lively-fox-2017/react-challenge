@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Spectral+SC');
+
 .App {
   text-align: center;
 }
@@ -20,6 +22,11 @@
 
 .App-intro {
   font-size: large;
+}
+
+.logo {
+  font-family: 'Spectral SC', serif;
+  font-size: 100px;
 }
 
 @keyframes App-logo-spin {
