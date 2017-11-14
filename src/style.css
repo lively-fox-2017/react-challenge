@@ -1,17 +1,35 @@
 html,body {
-  background: #ccc;
+  background: #fff;
 }
-h1 {
+h2 {
   font-size: 25px;
   padding: 10px;
 }
 img {
   float: left;
-  margin: 0 10px;
+  margin: 5px;
+  margin-right: 20px;
 }
 p {
   text-align: justify;
 }
 i {
   text-align: right;
+}
+.navbar-item {
+  width: 100%;
+  background: #333;
+  position: fixed;
+  padding: 5px;
+  z-index: 99;
+} 
+.navbar-item li {
+  list-style: none;
+  margin-right: 20px; 
+}
+.navbar-item .link {
+  color: #ccc;
+}
+.navbar-item .link:hover {
+  color: #fff
 }
