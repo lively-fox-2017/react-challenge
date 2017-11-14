@@ -5,8 +5,10 @@
 }
 
 .App-logo {
+  position: relative;
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
+  bottom: 30px;
 }
 
 .App-header {
