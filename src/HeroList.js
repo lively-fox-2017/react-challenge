@@ -17,6 +17,8 @@ class HeroList extends Component {
       );
     }
 
+    if (this.props.notFound)
+      return <p className="text-muted">Not found</p>
     return <p className="text-muted">Please Wait...</p>
   }
 }

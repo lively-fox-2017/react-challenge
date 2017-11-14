@@ -13,7 +13,8 @@ class Home extends Component {
     this.state = {
       heroes: [],
       keyword: '',
-      searches: []
+      searches: [],
+      notFound: false
     }
     this.search = this.search.bind(this);
   }
@@ -43,6 +44,12 @@ class Home extends Component {
           const regex = new RegExp("[a-z]*(" + this.state.keyword.toLowerCase() + ")[a-z]*", "ig");
           return regex.test(hero.localized_name.toLowerCase())
         })
+      }, () => {
+        if (!this.state.searches.length) {
+          this.setState({
+            notFound: true
+          });
+        }
       });
     })
   }
@@ -58,7 +65,7 @@ class Home extends Component {
         <hr/>
         <input type="text" className="form-control" placeholder="Search for heroes..." autoComplete="off" onChange={ this.search }/>
         <br/>
-        <HeroList heroes={ heroList }/>
+        <HeroList heroes={ heroList } notFound={ this.state.notFound }/>
       </div>
     );
   }
