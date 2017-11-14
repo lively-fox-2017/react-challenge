@@ -84,8 +84,15 @@ class HeroRecentMatches extends Component {
     }
 
     if (this.state.notFound)
-      return <h1 className="text-muted text-center">Hero not found</h1>;
-      
+      return (
+        <div className="text-center">
+          <h1 className="text-muted text-center">Hero not found</h1>
+          <Link to="/" className="btn btn-primary">
+            Back to Home
+          </Link>
+        </div>
+      );
+
     return <h1 className="text-muted text-center">Please wait...</h1>;
   }
 }
