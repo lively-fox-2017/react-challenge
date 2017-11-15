@@ -21,6 +21,7 @@ class SearchMovie extends Component {
       </div>)
     }
     const listMovie = [];
+    console.log(this.state.movResult);
     for (let movie of this.state.movResult) {
       let temp = (
         <MovieListFragment id={movie.imdbID} type={movie.Type} title={movie.Title} poster={movie.Poster} year={movie.Year} key={movie.imdbID}/>
@@ -38,11 +39,17 @@ class SearchMovie extends Component {
   }
 
   searchMovie() {
+    let query = this.state.search;
+    query.replace(' ', '%20')
     axios.get(`http://www.omdbapi.com/?s=${this.state.search}&apikey=d152fbcf`)
     .then(({ data }) => {
-      this.setState({
-        movResult: data.Search,
-      })
+      // console.log('data res ', data);
+      if(data.Response !== "False"){
+        this.setState({
+          movResult: data.Search,
+        })
+      }
+
     })
   }
 
