@@ -4,7 +4,7 @@ import logo from './logo.svg';
 import './App.css';
 import { Link, Route } from 'react-router-dom'
 import store from './store/index'
-import { video as videotuturu, term as termtuturu, selectedVideo } from './actions/ReduxVideo'
+import { video as videoact, term as termact, selectedVideo as selectVideoact } from './actions/ReduxVideo'
 
 //npm
 import YTSearch from 'youtube-api-search'
@@ -37,7 +37,6 @@ class App extends Component {
         termRedux: store.getState().video.term,
         videoRedux: store.getState().video.videos
       })
-      // this.setState({videoRedux: store.getState().video.videos})
     })
     this.videoSearch('')
   }
@@ -47,24 +46,14 @@ class App extends Component {
        video: data,
         selectedVideo: data[0],
      })
-    //  console.log('masuk video', data)
-     store.dispatch(termtuturu(term))
-     store.dispatch(videotuturu(data))
+     store.dispatch(termact(term))
+     store.dispatch(videoact(data))
    })
   }
 
-  // componentWillMount() {
-  //   this.videoSearch('')
-  // }
-
   render() {
-    // if(this.state.videoRedux.length != 0) {
-    //   console.log('ini state videoredux',this.state.videoRedux[0].id)
-    // }
-
       return (
         <div className="App">
-          {/* {JSON.stringify(this.state.videoRedux[0].kind)} */}
             <h1>Welcome To React Redux With Youtube API</h1>
             <img src={logo} className="App-logo" alt="logo" /><br/>
             <Link  to={'/view/'}><button>React Chalange Area</button></Link>
