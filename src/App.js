@@ -10,8 +10,9 @@ import store from './store';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 // import Home from './components/Home';
-import HomeRedux from './components/HomeRedux'
-import HeroRecentMatches from './components/HeroRecentMatches';
+import HomeRedux from './components/HomeRedux';
+// import HeroRecentMatches from './components/HeroRecentMatches';
+import HeroRecentMatchesRedux from './components/HeroRecentMatchesRedux';
 
 window.$openDota = axios.create({
   baseURL: 'https://api.opendota.com/api'
@@ -24,7 +25,7 @@ class App extends Component {
         <Router>
           <div>
             <Route exact path="/" component={HomeRedux}/>
-            <Route path="/recent-matches/:id" component={HeroRecentMatches}/>
+            <Route path="/recent-matches/:id" component={HeroRecentMatchesRedux}/>
           </div>
         </Router>
       </Provider>
