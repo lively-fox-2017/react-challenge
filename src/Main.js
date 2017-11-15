@@ -1,7 +1,7 @@
 import React from 'react'
-import Home from './pages/Home'
-import Photos from './pages/Photos'
-import Detail from './pages/Detail'
+import Home from './components/Home'
+import Photos from './components/Photos'
+import Detail from './components/Detail'
 
 import { Route } from 'react-router-dom'
 // import bulma from '../node_modules/bulma/css/bulma.css'
