@@ -23,9 +23,8 @@ class App extends Component {
         <div className= "container">
           <Header></Header>
           <Route exact path="/" component={Heroes} />
-          
+          <Route exact path = "/hero/:id" component={Hero}/>
         </div>
-    
       </Router>
     )
   }

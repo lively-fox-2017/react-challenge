@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import HeroAttr from '../components/HeroAtr';
-import { Link } from 'react-router-dom';
+import React, { Component } from 'react'
+import HeroAtr from '../components/HeroAtr'
+import { Link } from 'react-router-dom'
 
 let marginRight = {
   marginRight: '2px'
@@ -38,7 +38,7 @@ class Hero extends Component {
                   >
                     {role}
                   </span>
-                );
+                )
               })}
               <hr />
               <h5>

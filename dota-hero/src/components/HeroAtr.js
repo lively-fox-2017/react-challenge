@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 function HeroAtr(props) {
     return ( <table className="table text-center">
         <thead>
@@ -45,3 +46,5 @@ function HeroAtr(props) {
       </table>
     )
 }
+
+export default HeroAtr
