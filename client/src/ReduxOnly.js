@@ -65,8 +65,9 @@ class ReduxOnly extends React.Component {
       if(weather.name === city) {
         return weather
       }
-      return -1
     })
+    console.log(index)
+    console.log(city)
     return store.getState().CityList.weathers[index]
   }
   render () {

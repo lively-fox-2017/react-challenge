@@ -44,8 +44,9 @@ class ForecastDetail extends React.Component {
   }
   render() {
     if(!this.props.weather) {
-      return <Redirect push to="/redux/"/>
+      return <Redirect push to="/react/"/>
     } else {
+      console.log(this.props.weather)
       return (
         <div>
           <div className="col-md-6 col-sm-6">
@@ -76,7 +77,7 @@ class ForecastDetail extends React.Component {
                           </div>
                           {this.props.weather.main.temp_min}<sup>o</sup>C
                           <div className="forecast-icon">
-                            
+
                           </div>
                         </div>
                       </div>

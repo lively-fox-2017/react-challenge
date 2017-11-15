@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import CityItem from './CityItem'
+import CityItemReactRedux from './CityItemReactRedux'
+
 class CityListReactRedux extends React.Component {
   render () {
     return (
@@ -10,7 +11,7 @@ class CityListReactRedux extends React.Component {
         <div className="row">
           {this.props.CityList.weathers.map((weather, index) => {
             return (
-              <CityItem props={{weather, index}} key={index}/>
+              <CityItemReactRedux props={{weather, index}} key={index}/>
             )
           })}
         </div>
