@@ -1,11 +1,9 @@
 import React from 'react'
-import axios from 'axios'
 import { Redirect } from 'react-router-dom'
-
-import store from './store'
 
 class ForecastDetail extends React.Component {
   constructor () {
+    console.log('sini')
     super()
     this.state = {
       weather: {
@@ -15,9 +13,6 @@ class ForecastDetail extends React.Component {
         weather: [{}]
       }
     }
-    store.subscribe(()=>{
-      this.forceUpdate()
-    })
   }
   getDay() {
     var date = new Date().getDay()
@@ -68,8 +63,9 @@ class ForecastDetail extends React.Component {
     // console.log(this.props.weather)
   }
   render() {
+    console.log('haha')
     if(!this.props.weather) {
-      return <Redirect push to=""/>
+      return <Redirect push to="/redux/"/>
     } else {
       return (
         <div>
