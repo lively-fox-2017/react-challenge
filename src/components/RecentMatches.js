@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 
 const dotabuffPlayer = 'http://www.dotabuff.com/players/';
 const dotabuffMatch = 'http://www.dotabuff.com/matches/';
