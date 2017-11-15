@@ -8,7 +8,7 @@ function Articles(props) {
         {props.news.map((isiArticle, index) => {
           // console.log(isiArticle);
           return (
-            <Link className="list-group-item" to={'/article/' + isiArticle.title} key={ index }>
+            <Link className="list-group-item" to={'/' + isiArticle.title} key={ index }>
               <h3 className="list-group-item-heading">{ isiArticle.title }</h3> <hr style={{border: 1+'px solid red'}} />
               <p className="list-group-item-text">{ isiArticle.description.substring(0, 70) } ...</p>
             </Link>

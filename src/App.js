@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import './App.css';
 
+import store from './store'
+import { articlesAction } from './actions/articlesAction'
+
 import {
   BrowserRouter as Router,
   Route
@@ -11,6 +14,7 @@ import Navigation from './navigation'
 import Articles from './ArticleList'
 import Article from './article'
 import ArticlesRedux from './ArticleListRedux'
+import ArticleRedux from './ArticleRedux'
 
 class App extends Component {
   constructor() {
@@ -27,8 +31,12 @@ class App extends Component {
       this.setState({
         news: data.articles
       })
+
+      let articles = data.articles
+
+      store.dispatch(articlesAction(articles))
       // console.log(data);
-      console.log(this.state.news)
+      // console.log(this.state.news)
     }).catch((reason) => {
       console.log("ERROR ", reason);
     })
@@ -39,9 +47,21 @@ class App extends Component {
       <Router>
         <div className="App">
           <Navigation />
-          <Articles news={ this.state.news } />
-          <Route exact path="/article/:title" render={ (match) => (
-            <Article detailArticle={this.state.news} param={match} />
+          <Route exact path="/" render={() => (
+            <Articles news={ this.state.news } />
+          )} />
+          <Route exact path="/:title" render={ (match) => (
+            <div>
+              <Articles news={ this.state.news } />
+              <Article detailArticle={this.state.news} param={match} />
+            </div>
+          )} />
+
+          <Route exact path='/article/redux' render={ () => (
+            <div>
+              <ArticlesRedux />
+              <ArticleRedux />
+            </div>
           )} />
         </div>
       </Router>

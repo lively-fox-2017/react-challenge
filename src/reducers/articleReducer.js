@@ -3,9 +3,10 @@ const defaultState = {
 }
 
 const articleReducer = (state = defaultState, action) => {
-  // if (action.type === "ARTICLES") {
-  //   return {...state, news: }
-  // }
+  if (action.type === "ARTICLE") {
+    // console.log(action.payload);
+    return {...state, article: action.payload}
+  }
 
   return state
 }
