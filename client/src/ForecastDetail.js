@@ -2,6 +2,8 @@ import React from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
 
+import store from './store'
+
 class ForecastDetail extends React.Component {
   constructor () {
     super()
@@ -13,6 +15,9 @@ class ForecastDetail extends React.Component {
         weather: [{}]
       }
     }
+    store.subscribe(()=>{
+      this.forceUpdate()
+    })
   }
   getDay() {
     var date = new Date().getDay()
@@ -51,13 +56,13 @@ class ForecastDetail extends React.Component {
         }
     }
   }
-  getDetailData () {
-    axios.get('http://api.openweathermap.org/data/2.5/weather?q=' + this.props.match.params.city + '&APPID=2cd58962203b9095d5775fe5e666ee31&units=metric').then((data) => {
-      this.setState({weather: data.data})
-    }).catch((err) => {
-      console.log(err)
-    })
-  }
+  // getDetailData () {
+  //   axios.get('http://api.openweathermap.org/data/2.5/weather?q=' + this.props.match.params.city + '&APPID=2cd58962203b9095d5775fe5e666ee31&units=metric').then((data) => {
+  //     this.setState({weather: data.data})
+  //   }).catch((err) => {
+  //     console.log(err)
+  //   })
+  // }
   componentWillMount () {
     // this.getDetailData()
     // console.log(this.props.weather)

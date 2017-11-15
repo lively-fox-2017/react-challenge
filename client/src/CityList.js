@@ -1,14 +1,29 @@
 import React from 'react'
 
-import CityItem from './CityItem'
+//Redux
+import store from './store'
 
+import CityItem from './CityItem'
+/*
+{store.getState().CityList.weathers.map((weather, index) => {
+  return (
+    <CityItem props={{weather, index}} key={index}/>
+  )
+})}
+*/
 class CityList extends React.Component {
+  constructor () {
+    super()
+    store.subscribe(()=>{
+      this.forceUpdate()
+    })
+  }
   render () {
     return (
       <div>
         <h2 className="section-title">Live Weathers</h2>
         <div className="row">
-          {this.props.weathers.map((weather, index) => {
+          {store.getState().CityList.weathers.map((weather, index) => {
             return (
               <CityItem props={{weather, index}} key={index}/>
             )
