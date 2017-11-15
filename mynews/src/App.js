@@ -5,8 +5,10 @@ import './App.css';
 import { BrowserRouter as Router, Route , Link} from 'react-router-dom'
 import ArticleList from './ArticleList'
 import ArticleItem from './ArticleItem'
+import ArticleListReactRedux from './ArticleListReactRedux'
 import store from './store'
 import { loadNews } from './actions/NewsAction'
+import { Provider } from 'react-redux'
 
 class App extends Component {
   constructor() {
@@ -18,17 +20,15 @@ class App extends Component {
     store.subscribe(()=>{
       this.setState({
         articles:store.getState().News.articles
-
       })
     })
-
   }
 
 
   componentWillMount() {
     axios.get('https://newsapi.org/v1/articles?source=ign&apiKey=58adf3a0fbb940bf8cf2f688c308ef7e')
     .then(({data})=>{
-      // this.setState({articles:data.articles}) <---ini polos
+      // this.setState({articles:data.articles}) <---ini polos tanpa redux
       store.dispatch(loadNews(data.articles))
       store.dispatch()
     }).catch(err=>{
@@ -42,6 +42,7 @@ class App extends Component {
 
   render() {
     return (
+      <Provider store={store}>
       <Router>
       <div className="App">
         <div className="btn-group btn-group-justified">
@@ -54,11 +55,13 @@ class App extends Component {
           <Route exact path="/" component={ ()=>
             <ArticleList Articles = {this.state.articles} />}
           />
-          <Route exact path="/:id" component={(props)=>
+          <Route exact path="/detail/:id" component={(props)=>
             <ArticleItem Article = {this.datadetail(props)} />}
           />
+          <Route exact path="/reactredux" component={ArticleListReactRedux}/>
       </div>
       </Router>
+      </Provider>
     );
   }
 }

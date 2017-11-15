@@ -12,7 +12,7 @@ function ArticleList (props) {
               <div className="panel panel-default">
                 <div className="panel-body">
                   {item.title}
-                  <Link to={"/" + idx}  className="btn btn-warning btn-xs">Detail</Link>
+                  <Link to={"/detail/" + idx}  className="btn btn-warning btn-xs">Detail</Link>
                 </div>
               </div>
             )
