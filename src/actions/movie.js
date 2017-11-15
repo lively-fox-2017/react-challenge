@@ -6,6 +6,7 @@ const updateDetail = (payload) => {
     genre: payload.genre ||'',
     poster: payload.poster ||'',
     released: payload.released ||'',
+    id: payload.id || '',
   };
   return {
     type: 'UPDATE_DATA',
