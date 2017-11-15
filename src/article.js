@@ -20,7 +20,7 @@ function Article (props) {
         <div className='col-md-8 box' style={{backgroundColor: '#eaeaea', margin: 10+'px'}}>
           <h6 className='text-left'>Authored by { article.author }</h6>
           <h2>{ article.title }</h2>
-          <img src={article.urlToImage} alt="" width="100%" style={{borderRadius: 10+'px', marginBottom: 10+'px'}} />
+          <img src={article.urlToImage} alt="img is loading" width="100%" style={{borderRadius: 10+'px', marginBottom: 10+'px'}} />
           <p className="isi" style={{textAlign:'justify'}}>{ article.description }
             <a href={ article.url }> Complete Article Here</a>
           </p>
