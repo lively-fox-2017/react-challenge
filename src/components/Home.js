@@ -23,7 +23,7 @@ class Home extends Component {
     return openDota.get('/heroes');
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.fetchHeroes()
       .then(({ data }) => {
         this.setState({

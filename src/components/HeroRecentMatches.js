@@ -21,7 +21,7 @@ class HeroRecentMatches extends Component {
     return openDota.get('/heroes');
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.fetchHeroById()
       .then(({ data }) => {
         this.setState({

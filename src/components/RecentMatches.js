@@ -20,7 +20,7 @@ class RecentMatches extends Component {
     return openDota.get('/heroes/' + this.props.id + '/matches');
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.fetchMatches()
       .then(({ data }) => {
         this.setState({
