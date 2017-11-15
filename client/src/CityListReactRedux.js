@@ -2,13 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import CityItem from './CityItem'
-/*
-{store.getState().CityList.weathers.map((weather, index) => {
-  return (
-    <CityItem props={{weather, index}} key={index}/>
-  )
-})}
-*/
 class CityListReactRedux extends React.Component {
   render () {
     return (

@@ -19,15 +19,10 @@ class ReduxOnly extends React.Component {
     this.state = {
       cityName: ''
     }
-    // this.setCityName = this.setCityName.bind(this)
-    // this.getWeatherByCity = this.getWeatherByCity.bind(this)
   }
   getWeatherByLocation() {
     navigator.geolocation.getCurrentPosition((pos) => {
-      // console.log(pos.coords.latitude)
-      // console.log(pos.coords.longitude)
       axios.get('http://api.openweathermap.org/data/2.5/weather?lat=' + pos.coords.latitude.toString() + '&lon=' + pos.coords.longitude.toString() + '&APPID=2cd58962203b9095d5775fe5e666ee31&units=metric').then((data) => {
-        // this.setState({weather: data.data})
         store.dispatch(GetMyWeather(data.data))
       }).catch((err) => {
         console.log(err)
@@ -60,7 +55,6 @@ class ReduxOnly extends React.Component {
   componentDidMount() {
     this.getWeatherByLocation()
     this.getListBox()
-    // console.log('----------------');
   }
 
   setCityName(e) {

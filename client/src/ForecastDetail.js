@@ -3,16 +3,7 @@ import { Redirect } from 'react-router-dom'
 
 class ForecastDetail extends React.Component {
   constructor () {
-    console.log('sini')
     super()
-    this.state = {
-      weather: {
-        main: {},
-        coord: {},
-        wind: {},
-        weather: [{}]
-      }
-    }
   }
   getDay() {
     var date = new Date().getDay()
@@ -51,19 +42,7 @@ class ForecastDetail extends React.Component {
         }
     }
   }
-  // getDetailData () {
-  //   axios.get('http://api.openweathermap.org/data/2.5/weather?q=' + this.props.match.params.city + '&APPID=2cd58962203b9095d5775fe5e666ee31&units=metric').then((data) => {
-  //     this.setState({weather: data.data})
-  //   }).catch((err) => {
-  //     console.log(err)
-  //   })
-  // }
-  componentWillMount () {
-    // this.getDetailData()
-    // console.log(this.props.weather)
-  }
   render() {
-    console.log('haha')
     if(!this.props.weather) {
       return <Redirect push to="/redux/"/>
     } else {

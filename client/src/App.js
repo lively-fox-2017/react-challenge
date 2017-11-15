@@ -2,9 +2,11 @@
 import React, {Component} from 'react';
 import { BrowserRouter, Route, Link, Redirect } from 'react-router-dom'
 
+//Component
 import ReduxOnly from './ReduxOnly'
 import ReduxReact from './ReduxReact'
 
+//Image Logo
 import logo from './logo.svg';
 
 //Css File
