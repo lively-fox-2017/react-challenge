@@ -5,7 +5,7 @@ import dotenv from 'dotenv'
 import { store } from '../store'
 import { selectLocation } from '../actions/LocationActions'
 import { fetchNearbyStops } from '../actions/StopsActions'
-import Map from './Map'
+import Map from './MapRedux'
 import StopList from './StopList'
 import DepartureList from './DepartureList';
 import '../assets/css/bootstrap.min.css'
@@ -22,6 +22,8 @@ class App extends Component {
     }
     store.subscribe(() => {
       this.setState({
+        lat: store.getState().LocationReducer.lat,
+        lng: store.getState().LocationReducer.lng,
         stops: store.getState().StopsReducer.stops
       })
     })
