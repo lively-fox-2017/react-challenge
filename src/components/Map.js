@@ -34,7 +34,7 @@ const Map = compose(
     return (
     <GoogleMap
       defaultZoom={15}
-      defaultCenter={{ lat: -6.260721, lng: 106.7810405 }}>
+      defaultCenter={position}>
       {defaultMarker}
       {stopsMarkers}
     </GoogleMap>)
