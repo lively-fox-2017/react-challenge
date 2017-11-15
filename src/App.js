@@ -18,10 +18,10 @@ class App extends Component {
 
 
           <div>
-            <Link to="/"><h4> <i className="fa fa-home" aria-hidden="true"></i><strong>HOME</strong></h4> </Link>
+            <Link to="/"> Home </Link>
 
             <Route exact path="/" component={ HotMovie }/>
-            <Route path="/movie/:id" component={ MovieDetail }/>
+            <Route path="/movie/:id" render={ ({match}) => {return <MovieDetail match = {match}/>} }/>
           </div>
 
 

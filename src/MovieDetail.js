@@ -40,8 +40,13 @@ class MovieDetail extends Component {
     })
   }
 
-  render() {
+  componentDidMount() {
     this.fetchMovieById();
+    console.log('------1',this.props.match.params);
+    // if (this.props.match.params)
+  }
+
+  render() {
     return (
       <div className="container mt-4">
         <h2 className="text-left">{this.state.title}</h2>
