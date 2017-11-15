@@ -3,11 +3,14 @@ import {
   BrowserRouter as Router,
   Route
 } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import axios from 'axios';
 
+import store from './store';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import Home from './components/Home';
+// import Home from './components/Home';
+import HomeRedux from './components/HomeRedux'
 import HeroRecentMatches from './components/HeroRecentMatches';
 
 window.$openDota = axios.create({
@@ -17,12 +20,14 @@ window.$openDota = axios.create({
 class App extends Component {
   render() {
     return (
-      <Router>
-        <div>
-          <Route exact path="/" component={Home}/>
-          <Route path="/recent-matches/:id" component={HeroRecentMatches}/>
-        </div>
-      </Router>
+      <Provider store={ store }>
+        <Router>
+          <div>
+            <Route exact path="/" component={HomeRedux}/>
+            <Route path="/recent-matches/:id" component={HeroRecentMatches}/>
+          </div>
+        </Router>
+      </Provider>
     );
   }
 }
