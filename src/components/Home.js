@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 
 import HeroList from './HeroList';
-
-const openDota = axios.create({
-  baseURL: 'https://api.opendota.com/api'
-});
 
 class Home extends Component {
   constructor(props) {
@@ -20,7 +15,7 @@ class Home extends Component {
   }
 
   fetchHeroes () {
-    return openDota.get('/heroes');
+    return window.$openDota.get('/heroes');
   }
 
   componentDidMount() {

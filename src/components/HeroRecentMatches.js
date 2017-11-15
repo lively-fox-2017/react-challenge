@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 import HeroPanel from './HeroPanel';
 import RecentMatches from './RecentMatches';
-
-const openDota = axios.create({
-  baseURL: 'https://api.opendota.com/api'
-});
 
 class HeroRecentMatches extends Component {
   constructor(props) {
@@ -19,7 +14,7 @@ class HeroRecentMatches extends Component {
   }
 
   fetchHeroById() {
-    return openDota.get('/heroes');
+    return window.$openDota.get('/heroes');
   }
 
   componentDidMount() {

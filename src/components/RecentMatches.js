@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-const openDota = axios.create({
-  baseURL: 'https://api.opendota.com/api'
-});
-
 const dotabuffPlayer = 'http://www.dotabuff.com/players/';
 const dotabuffMatch = 'http://www.dotabuff.com/matches/';
 
@@ -17,7 +13,7 @@ class RecentMatches extends Component {
   }
 
   fetchMatches() {
-    return openDota.get('/heroes/' + this.props.id + '/matches');
+    return window.$openDota.get('/heroes/' + this.props.id + '/matches');
   }
 
   componentDidMount() {
