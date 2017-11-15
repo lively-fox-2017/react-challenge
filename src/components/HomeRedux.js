@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import {
-  fetchHeroes, keywordChange, fetchSearches, notFoundChange
+  fetchHeroes, keywordChange, fetchSearches, searchNotFoundChange
 } from '../actions/heroActions';
 import HeroList from './HeroList';
 
@@ -33,7 +33,7 @@ class HomeRedux extends Component {
     this.props.fetchSearches(searches);
 
     if (!this.props.searches.length) {
-      this.props.notFoundChange(true);
+      this.props.searchNotFoundChange(true);
     }
   }
 
@@ -48,7 +48,7 @@ class HomeRedux extends Component {
         <hr/>
         <input type="text" className="form-control" placeholder="Search for heroes..." autoComplete="off" onChange={ this.search }/>
         <br/>
-        <HeroList heroes={ heroList } notFound={ this.props.notFound }/>
+        <HeroList heroes={ heroList } searchNotFound={ this.props.searchNotFound }/>
       </div>
     );
   }
@@ -59,7 +59,7 @@ const mapStateToProps = (state) => {
     heroes: state.heroReducer.heroes,
     keyword: state.heroReducer.keyword,
     searches: state.heroReducer.searches,
-    notFound: state.heroReducer.notFound,
+    searchNotFound: state.heroReducer.searchNotFound,
   }
 };
 
@@ -68,7 +68,7 @@ const mapDispatchToProps = (dispatch) => {
     fetchHeroes: (heroes) => dispatch(fetchHeroes(heroes)),
     keywordChange: (keyword) => dispatch(keywordChange(keyword)),
     fetchSearches: (searches) => dispatch(fetchSearches(searches)),
-    notFoundChange: (notFound) => dispatch(notFoundChange(notFound)),
+    searchNotFoundChange: (searchNotFound) => dispatch(searchNotFoundChange(searchNotFound)),
   }
 };
 

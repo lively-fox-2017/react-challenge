@@ -25,11 +25,11 @@ export const fetchSearches = (searches) => {
   };
 };
 
-export const notFoundChange = (notFound) => {
+export const searchNotFoundChange = (searchNotFound) => {
   return {
-    type: 'NOTFOUND_CHANGE',
+    type: 'SEARCH_NOTFOUND_CHANGE',
     payload: {
-      notFound
+      searchNotFound
     }
   }
 };

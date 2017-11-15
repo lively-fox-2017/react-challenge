@@ -2,7 +2,7 @@ const initialState = {
   heroes: [],
   keyword: '',
   searches: [],
-  notFound: false
+  searchNotFound: false
 };
 
 const heroReducer = (state = initialState, action) => {
@@ -13,8 +13,8 @@ const heroReducer = (state = initialState, action) => {
       return {...state, keyword: action.payload.keyword};
     case 'FETCH_SEARCHES':
       return {...state, searches: action.payload.searches};
-    case 'NOTFOUND_CHANGE':
-      return {...state, notFound: action.payload.notFound};
+    case 'SEARCH_NOTFOUND_CHANGE':
+      return {...state, searchNotFound: action.payload.searchNotFound};
     default:
       return state;
   };
