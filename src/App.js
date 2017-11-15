@@ -6,8 +6,8 @@ import {
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import Home from './Home';
-import HeroRecentMatches from './HeroRecentMatches';
+import Home from './components/Home';
+import HeroRecentMatches from './components/HeroRecentMatches';
 
 class App extends Component {
   render() {
