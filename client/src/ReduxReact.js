@@ -12,7 +12,7 @@ import { GetMyWeather } from './actions/MyWeather'
 //Component File
 import CityListReactRedux from './CityListReactRedux';
 import MyForecastReactRedux from './MyForecastReactRedux';
-import ForecastDetailReactRedux from './ForecastDetail'
+import ForecastDetailReactRedux from './ForecastDetailReactRedux'
 
 class ReduxReact extends React.Component {
   constructor() {
