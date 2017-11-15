@@ -29,7 +29,7 @@ const Map = compose(
       lng: props.lng
     }
 
-    const defaultMarker = <Marker key='default' position={position} draggable={true} onDragEnd={getLongLat} icon={'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'} />
+    const defaultMarker = <Marker key='default' position={position} draggable={props.draggable} onDragEnd={getLongLat} icon={'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'} />
 
     return (
     <GoogleMap

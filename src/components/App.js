@@ -70,15 +70,15 @@ class App extends Component {
 
           <Route exact path="/" render={() => {
             return (
-              <div><Map handleMapMarker={(a,b) => this.handleMapMarker(a,b)} lat={this.state.lat} lng={this.state.lng} stops={this.state.stops} />
-              {this.stopsElement()}</div>
+              <div><Map draggable={true} handleMapMarker={(a,b) => this.handleMapMarker(a,b)} lat={this.state.lat} lng={this.state.lng} stops={this.state.stops} />
+                {this.stopsElement()}</div>
             )
           }} />
 
           <Route path="/detail/:id" render={(props) => {
             return (
               <div>
-                <Map handleMapMarker={(a,b) => this.handleMapMarker(a,b)} lat={this.state.lat} lng={this.state.lng} stops={this.state.stops.filter(stop => stop.Id === props.match.params.id)} />
+                <Map draggable={false} handleMapMarker={(a,b) => this.handleMapMarker(a,b)} lat={this.state.lat} lng={this.state.lng} stops={this.state.stops.filter(stop => stop.Id === props.match.params.id)} />
                 <DepartureList stopId={props.match.params.id} />
               </div>
             )
