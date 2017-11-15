@@ -9,11 +9,8 @@ const dotabuffPlayer = 'http://www.dotabuff.com/players/';
 const dotabuffMatch = 'http://www.dotabuff.com/matches/';
 
 class RecentMatchesRedux extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
+    this.props.fetchMatches([]);
     window.$openDota.get('/heroes/' + this.props.id + '/matches')
       .then(({ data }) => {
         this.props.fetchMatches(data.slice(0, 5)); // limit only 5

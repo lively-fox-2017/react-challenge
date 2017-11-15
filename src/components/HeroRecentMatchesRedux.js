@@ -10,6 +10,7 @@ import RecentMatchesRedux from './RecentMatchesRedux';
 
 class HeroRecentMatchesRedux extends Component {
   componentDidMount() {
+    this.props.fetchById({});
     window.$openDota.get('/heroes')
       .then(({ data }) => {
         const hero = data.filter((datum) => {
