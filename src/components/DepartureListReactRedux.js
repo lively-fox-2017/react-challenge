@@ -1,23 +1,23 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
-import { store } from '../store'
 import { fetchDeparture } from '../actions/DepartureActions'
 
-export default class DepartureList extends Component {
-  constructor () {
-    super()
-    this.state = {
-      schedules: store.getState().DepartureReducer.schedules
-    }
-    store.subscribe(() => {
-      this.setState({
-        schedules: store.getState().DepartureReducer.schedules
-      })
-    })
+const mapStateToProps = (state) => {
+  return {
+    schedules: state.DepartureReducer.schedules
   }
+}
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchDeparture: (stopId) => dispatch(fetchDeparture(stopId))
+  }
+}
+
+class DepartureList extends Component {
   componentWillMount () {
-    store.dispatch(fetchDeparture(this.props.stopId))
+    this.props.fetchDeparture(this.props.stopId)
   }
 
   listDepartures (departures) {
@@ -34,7 +34,7 @@ export default class DepartureList extends Component {
   }
 
   listSchedules () {
-    let schedules = this.state.schedules.map(schedule => {
+    let schedules = this.props.schedules.map(schedule => {
       return (
         <div key={schedule.ScheduleId} className="card border-info">
           <div className="card-body">
@@ -59,3 +59,5 @@ export default class DepartureList extends Component {
   }
 
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(DepartureList)

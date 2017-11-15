@@ -7,7 +7,7 @@ import { selectLocation } from '../actions/LocationActions'
 import { fetchNearbyStops } from '../actions/StopsActions'
 import Map from './Map'
 import StopList from './StopList'
-import DepartureListRedux from './DepartureListRedux';
+import DepartureList from './DepartureListRedux';
 import '../assets/css/bootstrap.min.css'
 
 dotenv.config()
@@ -74,7 +74,7 @@ class App extends Component {
             return (
               <div>
                 <Map draggable={false} handleMapMarker={(a,b) => this.handleMapMarker(a,b)} lat={this.state.lat} lng={this.state.lng} stops={this.state.stops.filter(stop => stop.Id === props.match.params.id)} />
-                <DepartureListRedux stopId={props.match.params.id} />
+                <DepartureList stopId={props.match.params.id} />
               </div>
             )
           }} />
