@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
 
 import store from './store';
 import { setRecipees } from './actions/RecipeeActions';
@@ -12,19 +13,6 @@ import Recipee from './components/Recipee';
 import './App.css';
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      recipees: store.getState().recipeeReducer.recipees
-    };
-
-    store.subscribe(() => {
-      this.setState({
-        recipees: store.getState().recipeeReducer.recipees
-      });
-    });
-  }
-
   getRecipees() {
     const proxyURL = 'https://cors-anywhere.herokuapp.com/';
     const apiURL = 'http://www.recipepuppy.com/api/';
@@ -47,23 +35,17 @@ class App extends Component {
     })
   }
 
-  findRecipee(id) {
-    const recipees = this.state.recipees
-    const recipee =  recipees.find(recipee => Number(id) === recipee.id)
-    return recipee
-  }
-
   render() {
-    const recipees = this.state.recipees;
-
     return (
-      <Router>
-        <div>
-          <Nav/>
-          <Route exact path='/' render={() => <Home recipees={recipees}/>} />
-          <Route path='/recipee/:id' render={({match}) => <Recipee recipee={this.findRecipee(match.params.id)}/>} />
-        </div>
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <div>
+            <Nav/>
+            <Route exact path='/' component={Home}/>
+            <Route path='/recipee/:id' component={Recipee} />
+          </div>
+        </Router>
+      </Provider>
     );
   }
 }

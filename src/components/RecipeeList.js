@@ -1,5 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+
+const mapStateToProps = (state) => {
+  return {
+    recipees: state.recipeeReducer.recipees
+  }
+}
 
 const RecipeeList = (props) => {
   const recipees = props.recipees.map(recipee => (
@@ -13,4 +20,5 @@ const RecipeeList = (props) => {
   return <div className="recipee-list-wrapper">{recipees}</div>;
 }
 
-export default RecipeeList;
+const recipeeListConnected = connect(mapStateToProps)(RecipeeList);
+export default recipeeListConnected;
