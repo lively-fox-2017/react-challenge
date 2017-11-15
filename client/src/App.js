@@ -23,7 +23,7 @@ class App extends Component {
       selectedVideo: null,
       term: ''
     }
-    this.videoSearch('taylorswift')
+    this.videoSearch('')
   }
   videoSearch(term) {
     YTSearch({key: API_KEY, term:term }, (data) => {
@@ -35,20 +35,28 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.video)
       return (
         <div className="App">
-            <h1>Welcome to API Youtube</h1>
-            <img src={logo} className="App-logo" alt="logo" />
-            <Content onSearch={term => this.videoSearch(term)}/>
-            <Route exact path ='/view' render={(props) => (
+            <h1>Welcome To React Redux With Youtube API</h1>
+            <img src={logo} className="App-logo" alt="logo" /><br/>
+            <Link  to={'/view/'}><button>React Chalange Area</button></Link>
+            <button>Redux chalange Area</button>
+            <button>React Redux chalange Area</button>
+            <Route exact path ={'/view/'} render={(props) => (
+              <Content onSearch={term => this.videoSearch(term)}/>
+            )}>
+          </Route>
+            <Route exact path ={'/view/' } render={(props) => (
               <DetailVideo video={this.state.selectedVideo} />
             )}>
-            </Route>
+          </Route>
+          <Route exact path={'/view/'} render={(props) => (
             <VideoList
               onSelect={ selectedVideo => this.setState({ selectedVideo }) }
               videos={ this.state.video }
             />
+          )}>
+        </Route>
         </div>
       );
     }
