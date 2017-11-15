@@ -5,6 +5,8 @@ import './App.css';
 import { BrowserRouter as Router, Route , Link} from 'react-router-dom'
 import ArticleList from './ArticleList'
 import ArticleItem from './ArticleItem'
+import store from './store'
+import { loadNews } from './actions/NewsAction'
 
 class App extends Component {
   constructor() {
@@ -12,13 +14,23 @@ class App extends Component {
     this.state = {
       articles:[]
     }
+
+    store.subscribe(()=>{
+      this.setState({
+        articles:store.getState().News.articles
+
+      })
+    })
+
   }
 
 
-  componentDidMount() {
+  componentWillMount() {
     axios.get('https://newsapi.org/v1/articles?source=ign&apiKey=58adf3a0fbb940bf8cf2f688c308ef7e')
     .then(({data})=>{
-      this.setState({articles:data.articles})
+      // this.setState({articles:data.articles}) <---ini polos
+      store.dispatch(loadNews(data.articles))
+      store.dispatch()
     }).catch(err=>{
       console.error(err);
     })
@@ -26,14 +38,13 @@ class App extends Component {
 
   datadetail(props){
     return this.state.articles[props.match.params.id]
-    // console.log(this.state.articles[props.match.params.id]);
   }
 
   render() {
     return (
       <Router>
       <div className="App">
-        <div class="btn-group btn-group-justified">
+        <div className="btn-group btn-group-justified">
         <Link to="/" className ="btn btn-default">Home</Link>
       </div>
         <header className="App-header">
