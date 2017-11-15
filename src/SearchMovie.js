@@ -8,6 +8,7 @@ class SearchMovie extends Component {
     this.state = {
       search: '',
       movResult: [],
+      notFound: false,
     }
     this.searchFormHandler = this.searchFormHandler.bind(this);
     this.searchMovie = this.searchMovie.bind(this);
@@ -38,11 +39,16 @@ class SearchMovie extends Component {
   }
 
   searchMovie() {
+    this.setState({notFound: false})
     axios.get(`http://www.omdbapi.com/?s=${this.state.search}&apikey=d152fbcf`)
     .then(({ data }) => {
       this.setState({
-        movResult: data.Search,
+        movResult: data.Search || [],
       })
+
+      if (!data.Search) {
+        this.setState({notFound: true})
+      }
     })
   }
 
@@ -58,6 +64,12 @@ class SearchMovie extends Component {
         </div>
 
         <div className="col-md-10 offset-md-1">
+          {(this.state.notFound == true) &&
+            (<div className="alert alert-danger mt-2" role="alert">
+              Not Found
+            </div>)
+          }
+
           {this.searchResult()}
         </div>
 
