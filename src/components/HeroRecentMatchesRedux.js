@@ -6,7 +6,7 @@ import {
   fetchById, fetchByIdNotFoundChange
 } from '../actions/heroActions';
 import HeroPanel from './HeroPanel';
-import RecentMatches from './RecentMatches';
+import RecentMatchesRedux from './RecentMatchesRedux';
 
 class HeroRecentMatchesRedux extends Component {
   componentDidMount() {
@@ -38,7 +38,7 @@ class HeroRecentMatchesRedux extends Component {
             </div>
             <div className="col-md-9">
               <h2 className="no-margin-top">Recent Matches</h2>
-              <RecentMatches id={ hero.id }/>
+              <RecentMatchesRedux id={ hero.id }/>
             </div>
           </div>
         </div>
