@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
+import HeroPanel from './HeroPanel';
 import RecentMatches from './RecentMatches';
 
 const openDota = axios.create({
@@ -48,31 +49,7 @@ class HeroRecentMatches extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-3">
-              <div className="panel panel-default">
-                <div className="panel-heading">
-                  <h3 className="panel-title">{ hero.localized_name }</h3>
-                </div>
-                <div className="panel-body">
-                  <p>
-                    <span className="text-muted">Primary Attr:</span>
-                    <br/>
-                    { hero.primary_attr.toUpperCase() }
-                    <br/>
-                    <span className="text-muted">Type:</span>
-                    <br/>
-                    { hero.attack_type }
-                    <br/>
-                    <span className="text-muted">Roles:</span>
-                    <br/>
-                    { hero.roles.join(', ') }
-                    <br/>
-                    <br/>
-                    <Link to="/" className="btn btn-primary">
-                      Back to Home
-                    </Link>
-                  </p>
-                </div>
-              </div>
+              <HeroPanel hero={ hero }/>
             </div>
             <div className="col-md-9">
               <h2 className="no-margin-top">Recent Matches</h2>
