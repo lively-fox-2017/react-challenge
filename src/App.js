@@ -7,9 +7,10 @@ import {
   Route
 } from 'react-router-dom'
 
-import Navigation from './navigation.js'
-import Articles from './ArticleList.js'
-import Article from './article.js'
+import Navigation from './navigation'
+import Articles from './ArticleList'
+import Article from './article'
+import ArticlesRedux from './ArticleListRedux'
 
 class App extends Component {
   constructor() {
