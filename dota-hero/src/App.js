@@ -1,20 +1,33 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Heroes from './components/Heroes'
+import Hero from './components/Hero'
+import Header from './components/Header'
+import { BrowserRouter as Router, Route} from 'react-router-dom'
+// import axios from 'axios'
+// import logo from './logo.svg';
+// import './App.css';
+
+
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      heroes: []
+    };
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
+      <Router> 
+        <div className= "container">
+          <Header></Header>
+          <Route exact path="/" component={Heroes} />
+          
+        </div>
+    
+      </Router>
+    )
   }
 }
 
