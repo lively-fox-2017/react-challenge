@@ -1,12 +1,13 @@
 import React from 'react';
+
 import RecipeeList from './RecipeeList';
 
-const Home = (props) => {
+const Home = () => {
   return (
     <div>
-      <RecipeeList recipees={props.recipees} />
+      <RecipeeList />
     </div>
   )
 }
 
-export default Home;
+export default Home
