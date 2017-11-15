@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
+import store from './store';
+import { setRecipees } from './actions/RecipeeActions';
 
 import Nav from './components/Nav';
 import Home from './components/Home';
@@ -12,9 +15,14 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      recipees: [],
-      loading: true
+      recipees: store.getState().recipeeReducer.recipees
     };
+
+    store.subscribe(() => {
+      this.setState({
+        recipees: store.getState().recipeeReducer.recipees
+      });
+    });
   }
 
   getRecipees() {
@@ -31,29 +39,29 @@ class App extends Component {
         recipee.id = idx;
         return recipee;
       });
-      this.setState({ recipees: recipees, loading: false });
+
+      store.dispatch(setRecipees(recipees));
     })
     .catch(err => {
       alert(err)
     })
   }
 
-  findOne(id) {
+  findRecipee(id) {
     const recipees = this.state.recipees
     const recipee =  recipees.find(recipee => Number(id) === recipee.id)
     return recipee
   }
 
   render() {
-    const isLoading = this.state.loading;
     const recipees = this.state.recipees;
 
     return (
       <Router>
         <div>
           <Nav/>
-          <Route exact path='/' render={() => <Home isLoading={isLoading} recipees={recipees}/>} />
-          <Route path='/recipee/:id' render={({match}) => <Recipee recipee={this.findOne(match.params.id)}/>} />
+          <Route exact path='/' render={() => <Home recipees={recipees}/>} />
+          <Route path='/recipee/:id' render={({match}) => <Recipee recipee={this.findRecipee(match.params.id)}/>} />
         </div>
       </Router>
     );
