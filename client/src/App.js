@@ -9,6 +9,7 @@ import store from './store'
 //Component
 import ReduxOnly from './ReduxOnly'
 import ReduxReact from './ReduxReact'
+import ReduxReactThunk from './ReduxReactThunk'
 
 //Image Logo
 import logo from './logo.svg';
@@ -27,9 +28,10 @@ class App extends Component {
               <Link to={'/'}><img src={logo} className="App-logo" alt="logo"/></Link>
               <h1 className="App-title">Welcome to React Weather</h1>
             </header>
-            <Route exact path="/" render={() => <Redirect to="/react" />}/>
+            <Route exact path="/" render={() => <Redirect to="/thunk" />}/>
             <Route path="/redux" render={()=><ReduxOnly/>}/>
             <Route path="/react" render={()=><ReduxReact/>}/>
+            <Route path="/thunk" render={()=><ReduxReactThunk/>}/>
           </div>
         </Provider>
       </BrowserRouter>

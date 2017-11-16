@@ -5,15 +5,15 @@ import { Route, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 //Redux
-import { GetCityList } from './actions/CityList'
-import { GetMyWeather } from './actions/MyWeather'
+import { fetchCityListApi } from './actions/CityListThunk'
+import { fetchLocation, fetchByCity } from './actions/MyWeatherThunk'
 
 //Component File
 import CityListReactRedux from './CityListReactRedux';
 import MyForecastReactRedux from './MyForecastReactRedux';
 import ForecastDetailReactRedux from './ForecastDetailReactRedux'
 
-class ReduxReact extends React.Component {
+class ReduxReactThunk extends React.Component {
   constructor() {
     super()
     this.state = {
@@ -23,25 +23,11 @@ class ReduxReact extends React.Component {
     // this.getWeatherByCity = this.getWeatherByCity.bind(this)
   }
   getWeatherByLocation() {
-    navigator.geolocation.getCurrentPosition((pos) => {
-      // console.log(pos.coords.latitude)
-      // console.log(pos.coords.longitude)
-      axios.get('http://api.openweathermap.org/data/2.5/weather?lat=' + pos.coords.latitude.toString() + '&lon=' + pos.coords.longitude.toString() + '&APPID=2cd58962203b9095d5775fe5e666ee31&units=metric').then((data) => {
-        // this.setState({weather: data.data})
-        // store.dispatch(GetMyWeather(data.data))
-        this.props.GetMyWeather(data.data)
-      }).catch((err) => {
-        console.log(err)
-      })
-    })
+    this.props.fetchLocation()
   }
   getWeatherByCity(e) {
     e.preventDefault()
-    axios.get('http://api.openweathermap.org/data/2.5/weather?q=' + this.state.cityName + '&APPID=2cd58962203b9095d5775fe5e666ee31&units=metric').then((data) => {
-      this.props.GetMyWeather(data.data)
-    }).catch((err) => {
-      console.log(err)
-    })
+    this.props.fetchByCity(this.state.cityName)
   }
   getListBox() {
     // axios.get('http://api.openweathermap.org/data/2.5/box/city?bbox=92.460937,-10.919618,141.152344,8.494105&APPID=2cd58962203b9095d5775fe5e666ee31&units=metric').then((data) => {
@@ -51,11 +37,7 @@ class ReduxReact extends React.Component {
     // }).catch((err) => {
     //   console.log(err);
     // })
-    axios.get('http://api.openweathermap.org/data/2.5/box/city?bbox=92.460937,-10.919618,141.152344,8.494105&APPID=2cd58962203b9095d5775fe5e666ee31&units=metric').then((data) => {
-      this.props.GetCityList(data.data.list)
-    }).catch((err) => {
-      console.log(err);
-    })
+    this.props.fetchCityListApi()
   }
 
   componentDidMount() {
@@ -90,8 +72,8 @@ class ReduxReact extends React.Component {
         <main className="main-content">
           <div className="fullwidth-block">
             <div>
-              <Route exact path="/react/:city" render={({match})=>{return(<ForecastDetailReactRedux weather={this.findWeather(match.params.city)} />)}}></Route>
-              <Route exact path="/react" render={()=><CityListReactRedux/>}></Route>
+              <Route exact path="/thunk/:city" render={({match})=>{return(<ForecastDetailReactRedux weather={this.findWeather(match.params.city)} />)}}></Route>
+              <Route exact path="/thunk" render={()=><CityListReactRedux/>}></Route>
             </div>
           </div>
         </main>
@@ -108,9 +90,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    GetMyWeather: (weather) => dispatch(GetMyWeather(weather)),
-    GetCityList: (weathers) => dispatch(GetCityList(weathers))
+    fetchCityListApi: () => dispatch(fetchCityListApi()),
+    fetchLocation: () => dispatch(fetchLocation()),
+    fetchByCity: (city) => dispatch(fetchByCity(city))
   }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ReduxReact))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ReduxReactThunk))
