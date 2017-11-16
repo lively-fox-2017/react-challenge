@@ -3,17 +3,17 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import { allPoke,  } from '../actions/index'
+import { allPokeThunk } from '../actions/index'
 
-class HomeReactRedux extends React.Component {
+class HomeReactReduxThunk extends React.Component {
     constructor() {
         super()
     }
 
-    render () {
-        return(
+    render() {
+        return (
             <div>
-                <h3>Home Page React-Redux</h3>
+                <h3>Home Page React-Redux-Thunk</h3>
                 <ul>
                     <li>
                         <Link to="/trainerDetail">
@@ -27,23 +27,24 @@ class HomeReactRedux extends React.Component {
     }
 
     componentWillMount() {
-        var proxy = 'https://cors-anywhere.herokuapp.com/'
-        var urlPoke = 'http://pokeapi.co/api/v2/pokemon/'
-        // var urlPoke = 'https://swapi.co/api/people'
-        axios.get(proxy + urlPoke)
-            // axios({
-            //   method: 'get',
-            //   url: proxy + urlPoke,
-            // })
-            .then(({ data }) => {
-                if (data.results) {
-                    // alert(JSON.stringify(data.results))
-                    this.props.allPoke(data.results)
-                }
-            })
+        this.props.allPokeThunk()
+        // var proxy = 'https://cors-anywhere.herokuapp.com/'
+        // var urlPoke = 'http://pokeapi.co/api/v2/pokemon/'
+        // // var urlPoke = 'https://swapi.co/api/people'
+        // axios.get(proxy + urlPoke)
+        //     // axios({
+        //     //   method: 'get',
+        //     //   url: proxy + urlPoke,
+        //     // })
+        //     .then(({ data }) => {
+        //         if (data.results) {
+        //             // alert(JSON.stringify(data.results))
+        //             this.props.allPoke(data.results)
+        //         }
+        //     })
     }
 
-    showAllPokeReactRedux () {
+    showAllPokeReactRedux() {
         if (this.props.pokeBox.length > 0) {
             console.log('FROM SHOW ALL POKE REACT REDUX', this.props.pokeBox)
             return <div>
@@ -67,7 +68,7 @@ class HomeReactRedux extends React.Component {
         }
     }
 
-    sendPokeBox (val) {
+    sendPokeBox(val) {
         this.props.getPokeBox(val)
     }
 }
@@ -83,14 +84,14 @@ const mapState = (state) => {
 
 const mapActions = (dispatch) => {
     return {
-        allPoke: (payload) => dispatch(allPoke(payload))
+        allPokeThunk: (payload) => dispatch(allPokeThunk(payload))
     }
 }
 
-const connectedToHomeReactRedux = connect(
+const connectedToHomeReactReduxThunk = connect(
     mapState,
     mapActions
-)(HomeReactRedux)
+)(HomeReactReduxThunk)
 
 
-export default (connectedToHomeReactRedux)
+export default (connectedToHomeReactReduxThunk)

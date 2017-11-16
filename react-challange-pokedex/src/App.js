@@ -12,6 +12,8 @@ import DetailPokeReactRedux from './components/detailPokeReactRedux'
 //ReactRedux
 import HomeReactRedux from './components/homeReactRedux'
 
+//Thunk 
+import HomeThunk from './components/homeThunk'
 //wrapper
 var Pokedex = require('pokeapi-js-wrapper');
 // var P = new Pokedex.Pokedex();
@@ -41,6 +43,10 @@ class App extends Component {
           <Route
             exact path="/homeReactRedux"
               render={props => <HomeReactRedux getPokeBox={this.receivePokeBox.bind(this)}></HomeReactRedux>}
+          />
+          <Route
+            exact path="/homeReactReduxThunk"
+              render={props => <HomeThunk getPokeBox={this.receivePokeBox.bind(this)}></HomeThunk>}
           />
           </div>
 

@@ -23,6 +23,10 @@ const HeadFunction = (props) =>{
                     <div className="">
                         <Link to="/homeReactRedux"><h3>Home React-Redux</h3></Link>
                     </div>
+                    <p>||</p>
+                    <div className="">
+                        <Link to="/homeReactReduxThunk"><h3>Home React-Redux-Thunk</h3></Link>
+                    </div>
                 </div>
             </div>
         </div>
