@@ -1,17 +1,17 @@
 const stateListVideo = {
   listVideo: [],
   param: '',
-  listVideoSearches:[]
+  // listVideoSearches:[]
 }
 
 const listVideoReducer = (state = stateListVideo, action) => {
-  console.log('listVideoReducer.type', action.type);
+  // console.log('listVideoReducer.type', action.type);
   switch (action.type) {
     case 'fetchAll':
       return {
         ...state, listVideo: action.payload.listVideo
       }
-    case 'param_cange':
+    case 'param_change':
       return {
         ...state, param: action.payload.param
       }

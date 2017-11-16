@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import Axios from 'axios'
 import ListVideo from './ListVideo'
-import { connect } from 'react-redux'
-import { fetchAllVideo } from '../actions/listVideoActions'
 
 class Main extends Component {
   constructor(props) {
@@ -30,8 +28,7 @@ class Main extends Component {
     Axios.get('https://www.googleapis.com/youtube/v3/videos?chart=mostPopular&key=AIzaSyD36XAU2xCZCinLW7GnkoLSgmelqNV4_Dg&part=snippet&maxResults=8')
     .then(response=>{
       // console.log(response);
-      // this.setState({listVideo:response.data.items})
-      this.props.fetchAllVideo(response)
+      this.setState({listVideo:response.data.items})
       // console.log('adfasds', response.data.items); response.data.items[0].snippet.thumbnails.medium);
     })
     .catch(err=>{
@@ -67,15 +64,4 @@ class Main extends Component {
     )
   }
 }
-const mapStateToProps = (state) => {
-  return {
-    listVideo: state.listVideoReducer.listVideo
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchAllVideo: (listVideo) => dispatch(fetchAllVideo(listVideo))
-  }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Main)
+export default Main

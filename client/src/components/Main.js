@@ -39,7 +39,7 @@ class Main extends Component {
     })
   }
   handleChange(event){
-    console.log('iniprops', this.props);
+    // console.log('iniprops', this.props);
     this.props.paramChange(event.target.value);
     console.log('ini props param', this.props.param);
     event.preventDefault();
@@ -70,7 +70,7 @@ class Main extends Component {
   }
 }
 const mapStateToProps = (state) => {
-  console.log('--------mapStateToProps', state);
+  // console.log('--------mapStateToProps', state);
   return {
     listVideo: state.listVideoReducer.listVideo,
     param: state.listVideoReducer.param

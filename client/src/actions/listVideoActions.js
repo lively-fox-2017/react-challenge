@@ -8,7 +8,7 @@ export const fetchAllVideo = (listVideo) => {
 }
 
 export const paramChange = (param) => {
-  console.log('xxxxxx', param);
+  // console.log('xxxxxx', param);
   return {
     type: 'param_change',
     payload: {
