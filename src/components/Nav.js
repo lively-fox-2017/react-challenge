@@ -5,12 +5,24 @@ import Logo from './../logo.png'
 
 const Nav = () => {
   return (
-    <nav>
-      <Link to='/'>
-        <img src={Logo} alt='logo'/>
-      </Link>
+    <nav style={style.nav}>
+      <img src={Logo} alt='logo'/>
+      <div>
+        <Link to='/'><span style={style.linkspan}>Recipees</span></Link>
+        <Link to='/restaurants'><span style={style.linkspan}>Restaurants</span></Link>
+      </div>
     </nav>
   )
+}
+
+const style = {
+  nav: {
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  linkspan: {
+    padding: '8px 16px'
+  }
 }
 
 export default Nav
