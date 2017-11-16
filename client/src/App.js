@@ -5,6 +5,7 @@ import './App.css';
 import { Link, Route } from 'react-router-dom'
 import store from './store/index'
 import { video as videoact, term as termact, selectedVideo as selectVideoact } from './actions/ReduxVideo'
+import { connect } from 'react-redux'
 
 //npm
 import YTSearch from 'youtube-api-search'
@@ -18,6 +19,11 @@ import DetailVideo from './components/DetailVideo'
 import Redux_content_search from './components/Redux_content_search'
 import Redux_detail_video from './components/Redux_detail_video'
 import Redux_video_list from './components/Redux_video_list'
+
+//component React-Redux chalange
+import ReactReduxContentSearch from './components/ReactReduxContentSearch'
+import ReactReduxDetailVideo from './components/ReactReduxDetailVideo'
+import ReactReduxVideoList from './components/ReactReduxVideoList'
 
 const API_KEY = 'AIzaSyCa8B0c1rnbPHvSpZrglHaYs6-vgGXdxCg'
 
@@ -60,7 +66,7 @@ class App extends Component {
             <img src={logo} className="App-logo" alt="logo" /><br/>
             <Link  to={'/view/'}><button>React Chalange Area</button></Link>
             <Link to={'/redux/'}><button>Redux chalange Area</button></Link>
-            <button>React Redux chalange Area</button>
+            <Link to={'/react/'}><button>React Redux chalange Area</button></Link>
             <Route exact path ={'/view/'} render={(props) => (
               <Content onSearch={term => this.videoSearch(term)}/>
             )}>
@@ -91,6 +97,21 @@ class App extends Component {
             />
           )}>
         </Route>
+        <Route exact path ={'/react/'} render={(props) => (
+          <Redux_content_search onSearch={(termRedux) => this.videoSearch(termRedux)}/>
+        )}>
+      </Route>
+        <Route exact path ={'/react/' } render={(props) => (
+          <Redux_detail_video video={this.state.selectedVideoRedux} />
+        )}>
+      </Route>
+      <Route exact path={'/react/'} render={(props) => (
+        <Redux_video_list
+          onSelect={ selectedVideoRedux => this.setState({ selectedVideoRedux }) }
+          videos={ this.state.videoRedux }
+        />
+      )}>
+      </Route>
         </div>
       );
     }
