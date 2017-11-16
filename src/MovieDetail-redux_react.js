@@ -29,7 +29,7 @@ class MovieDetail extends Component {
             released: data.Released,
             id: data.imdbID,
           }
-          store.dispatch(movieActions.UPDATE_DATA(detail));
+          this.props.updateDetail(detail);
         }
 
       })
@@ -75,7 +75,13 @@ export default connect(
       det: state
     }
   },
-  null
+  (dispatch) => {
+    return {
+      updateDetail: (detail) => {
+        dispatch(movieActions.UPDATE_DATA(detail))
+      }
+    }
+  }
 )(MovieDetail)
 
 // export default MovieDetail;
