@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 export const getHeroes = (_heroes) => {
   return {
     type: 'GET_HEROES',
@@ -18,4 +20,12 @@ export const setSelectedHero = (activeHero) => {
 
 export const destroyActiveHero = {
   type: 'DESTROY_ACTIVE_HERO'
+}
+
+export const fetchSwapi = () => {
+  return (dispatch, getHeroes) => {
+    let url = axios.get('https://swapi.co/api/people/')
+    console.log('ini hasil url', url)
+    dispatch(getHeroes(url))
+  }
 }

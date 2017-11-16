@@ -1,29 +1,28 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
-import { getHeroes, destroyActiveHero } from '../actions/heroAction'
+import { fetchSwapi, destroyActiveHero } from '../actions/heroAction'
 
 import ContentRedux from './ContentRedux'
 import DetailHeroesRedux from './DetailHeroesRedux'
 
 class HomeReactRedux extends Component {
-  fetchSwapi () {
-    axios.get('https://swapi.co/api/people/')
-    .then(({ data }) => {
-      let heroes = data.results
-      this.props.getHeroes(heroes)
-    })
-    .catch((err) => {
-      console.error(err)
-    })
-  }
+  // constructor (props) {
+  //   super(props)
+  //   console.log('isi props', this.props)
+  //   this.props.getHeroes()
+  // }
+  // fetchSwapi () {
+  //   this.props.getHeroes()
+  // }
 
   destroyPreviousActiveHero () {
     this.props.destroyActiveHero()
   }
 
   componentWillMount () {
-    this.fetchSwapi()
+    console.log('jenennge jekek', this.props)
+    this.props.x()
     this.destroyPreviousActiveHero()
   }
 
@@ -51,13 +50,13 @@ class HomeReactRedux extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getHeroes: (_heroes) => dispatch(getHeroes(_heroes)),
+    x: () => dispatch(fetchSwapi()),
     destroyActiveHero: () => dispatch(destroyActiveHero)
   }
 }
 
 const mapStateToProps = (state) => {
-  console.log('state di react-redux', state);
+  // console.log('ini state 1---->', this.fetchSwapi())
   return {
     dataHero: state.heroes
   }
