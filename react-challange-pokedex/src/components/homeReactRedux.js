@@ -31,6 +31,7 @@ class HomeReactRedux extends React.Component {
             .then(({ data }) => {
                 console.log('FROM REACT-REDUX', data.results)
                 if (data.results) {
+                    // alert(JSON.stringify(data.results))
                     this.props.allPoke(data.results)
                 }
             })
@@ -40,18 +41,18 @@ class HomeReactRedux extends React.Component {
         if (this.props.pokeBox.length > 0) {
             console.log('FROM SHOW ALL POKE REACT REDUX', this.props.pokeBox)
             return <div>
-                {/* {this.props.pokeBox.map(singlePoke => {
+                {this.props.pokeBox.map(singlePoke => {
                     // var detailPoke = `/detailPoke/${singlePoke.name}`
                     return <div key={singlePoke.name}>
                         <Link
-                            onClick={this.sendPokeBox.bind(this, singlePoke)}
+                            // onClick={this.sendPokeBox.bind(this, singlePoke)}
                             to={'/detailPoke/' + singlePoke.name}>
                             <p>
                                 {singlePoke.name}
                             </p>
                         </Link>
                     </div>
-                })} */}
+                })}
             </div>
         } else {
             return <div>
@@ -73,7 +74,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        allPoke: (payload) => dispatch(allPoke(allPoke))
+        allPoke: (payload) => dispatch(allPoke(payload))
     }
 }
 
