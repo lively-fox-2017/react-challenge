@@ -22,6 +22,15 @@
   font-size: large;
 }
 
+.Image-format {
+  width: 100%; 
+  display: block;
+}
+
+.Round-image {
+  border-radius: 25px;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

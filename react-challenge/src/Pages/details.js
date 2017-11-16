@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import axios from 'axios';
 
 import { 
   fetchNews,
@@ -18,14 +17,19 @@ class Details extends Component {
     render() {
         return (
             <div>
-            {this.props.details != undefined ?
-              this.props.details.map((item) => {
+            {this.props.details !== undefined ?
+              this.props.details.map((item, idx) => {
                 return (
-                  <div>
-                  <h1>
-                  {item.title}
-                  </h1>
-                  <img src={item.urlToImage} width="100%" alt=""/>
+                  <div key={idx} className="col-md-8" style={{margin: 'auto'}}>
+                  <h3>
+                  { item.title }
+                  <small className="text-muted"> written by : { item.author }</small>
+                  </h3>
+                  <img className="Round-image" src={item.urlToImage} width="100%" alt=""/>
+                  <br/>
+                  <br/>
+                  <p className="lead">{ item.description }</p>
+                  <a className="btn btn-outline-info" href={ item.url } target="_blank">Original Url</a>
                   </div>
                 )
                 }):

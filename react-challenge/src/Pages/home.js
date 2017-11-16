@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Route, Link } from 'react-router-dom'
-import axios from 'axios';
+import { Link } from 'react-router-dom'
 
 import { 
   fetchNews
@@ -17,18 +16,21 @@ class Home extends Component {
 
     render() {
         return (
-            <div>
-            {this.props.title}
-            {this.props.items.articles != undefined ? 
-            this.props.items.articles.map((item) => {
+            <div className="col-md-8" style={{margin: 'auto'}}>
+            {this.props.items.articles !== undefined ? 
+            this.props.items.articles.map((item, idx) => {
               return (
-                <div>
-                <Link to={`/home/${item.title}`}>
-                <h1>
-                {item.title}
-                </h1>
+                <div key={idx}>
+                <br/>
+                <Link to={`/home/${item.title}`} className="card-link">
+                  <div className="card">
+                  <h3 className="card-header">{ item.title }</h3>
+                  <img className="Image-format" src={item.urlToImage} alt="Card image"/>
+                  <div className="card-footer text-muted">
+                    2 days ago
+                  </div>
+                  </div>
                 </Link>
-                <img src={item.urlToImage} width="100%" alt=""/>
                 </div>
               )
               }):
@@ -38,7 +40,7 @@ class Home extends Component {
           </div>
         )
     }
-    
+
   componentWillMount() {
     this.props.fetchNews()
     console.log(this.props)
