@@ -1,13 +1,17 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
-export default class Content extends Component{
+class Content extends Component {
   render () {
-    const { test } = this.props
     return (
-      <div>
-        <p>Tinggi badan : {test.height}</p>
-        <p>skin_color : {test.skin_color}</p>
-      </div>
+      <Link className="list-group-item" to={ {
+        pathname: `/${this.props.dataHero.heroKey}`,
+        state: { dataActiveHero: this.props.dataHero.hero }
+      } }>
+        { this.props.dataHero.hero.name }
+      </Link>
     )
   }
 }
+
+export default Content
