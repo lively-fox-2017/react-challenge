@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
+import Axios from 'axios'
 import ListVideo from './ListVideo'
 import { connect } from 'react-redux'
-import { paramChange, fetchAllVideoAPI, fetchAllVideoByParamAPI } from '../actions/listVideoActions'
+import { fetchAllVideo, paramChange, fetchAllVideoAPI } from '../actions/listVideoActions'
 
 class Main extends Component {
   constructor(props) {
@@ -14,10 +15,30 @@ class Main extends Component {
   }
   searchVideo(param){
     console.log('inii param', param);
-    this.props.fetchAllVideoByParam(param)
+    Axios.get('https://www.googleapis.com/youtube/v3/search?part=snippet&q='+param+'&type=video&key=AIzaSyD36XAU2xCZCinLW7GnkoLSgmelqNV4_Dg&maxResults=8')
+    // https://www.googleapis.com/youtube/v3/search
+    .then(response=>{
+      // console.log(response);
+      // this.setState({listVideo:response.data.items})
+      this.props.fetchAllVideo(response.data.items)
+      // console.log('adfasds', response.data.items);
+    })
+    .catch(err=>{
+      console.log(err);
+    })
   }
   componentDidMount(){
-    this.props.fetchAllVideo()
+    this.fetchAllVideoAPI()
+    // Axios.get('https://www.googleapis.com/youtube/v3/videos?chart=mostPopular&key=AIzaSyD36XAU2xCZCinLW7GnkoLSgmelqNV4_Dg&part=snippet&maxResults=8')
+    // .then(response=>{
+    //   // console.log('ini props', this.props);
+    //   this.props.fetchAllVideo(response.data.items)
+    //   // console.log('------props.fetchAllVideo', this.props.fetchAllVideo);
+    // })
+    // .catch(err=>{
+    //   console.log(err);
+    // })
+
   }
   handleChange(event){
     // console.log('iniprops', this.props);
@@ -61,8 +82,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   // console.log('...........dispatch', dispatch);
   return {
-    fetchAllVideo: () => dispatch(fetchAllVideoAPI()),
-    fetchAllVideoByParam: (param) => dispatch(fetchAllVideoByParamAPI(param)),
+    fetchAllVideoAPI: () => dispatch(fetchAllVideo(listVideo)),
     paramChange: (param) => dispatch(paramChange(param))
   }
 }
