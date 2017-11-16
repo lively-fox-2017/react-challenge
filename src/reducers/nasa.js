@@ -5,6 +5,7 @@ import { combineReducers } from 'redux'
 const nasaAPI = (state = [], action) => {
   switch (action.type) {
     case GET_NEWS:
+      console.log('----------lalalal', action)    
       return [...state, {news:action.news}]
     case GET_PHOTO:
       let photos = []
