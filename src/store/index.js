@@ -5,6 +5,7 @@ import reducer from '../reducers';
 
 const loggerMiddleware = createLogger();
 
+// Uncomment loggerMiddleware to turn on logging
 const middlewares = applyMiddleware(
   thunkMiddleware,
   // loggerMiddleware
