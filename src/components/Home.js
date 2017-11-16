@@ -1,29 +1,23 @@
 import React from 'react'
 import axios from 'axios'
+import { connect } from 'react-redux'
+import ReactRedux from 'react-redux'
 import { createStore } from 'redux'
 import nasaAPP from '../reducers/nasa'
 import { getNews } from '../actions/nasa'
-let store = createStore(nasaAPP)
+import { loadProgressBar } from 'axios-progress-bar'
 
 class Home extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      news: store.getState().getNews
-    }
-    store.subscribe(() => {
-        this.setState({
-          news: store.getState().getNews
-        })
-    })
+  constructor(props) {
+    super(props)
   }
   componentWillMount() {
+    loadProgressBar()
     axios.get(`
     https://api.nasa.gov/planetary/apod?api_key=weP4e0Cpi6i6dKhqTOiXOmfeBSeTwXj6q0BcZBef 
     `)
     .then(res => {
-      console.log(res)
-      store.dispatch(getNews(res.data))
+      this.props.getData(res.data)
     })
     .catch(err => console.log(err))        
   }
@@ -31,7 +25,7 @@ class Home extends React.Component {
     return (
       <div className="home">
         { 
-          store.getState().nasaAPI.map(val => (
+          this.props.showNews.map(val => (
             <div className="home-dateil">
               <h3>{val.news.title}</h3>
               <img src={val.news.url} width="50%" alt={val.news.url}/>
@@ -44,4 +38,14 @@ class Home extends React.Component {
     )
   }
 }
-export default Home
+const mapState = (state) => (
+  { showNews: state.nasaAPI }  
+)
+const mapDispatch = (dispatch) => (
+  { getData: (news) => dispatch(getNews(news)) }
+)
+const homeConnect = connect(
+  mapState,
+  mapDispatch
+)(Home)
+export default homeConnect
