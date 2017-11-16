@@ -1,12 +1,12 @@
 import React from 'react'
 
 const Redux_detail_video = ({video}) => {
-  if(video.length === 0) {
+  if(video === null) {
     return <div>Please Wait ......</div>
   }
-    console.log('ini video dari videodetail', video[0].id.videoId)
+    // console.log('ini video dari videodetail', video.id.videoId)
 
-  const videoId = video[0].id.videoId
+  const videoId = video.id.videoId
   // console.log('ini',video)
   const url = `https://www.youtube.com/embed/${videoId}`
 
@@ -16,8 +16,8 @@ const Redux_detail_video = ({video}) => {
           <iframe className ="embed-responsive-item" src={url}></iframe>
        </div>
        <div className="details">
-         <div>{ video[0].snippet.title }</div>
-         <div>{ video[0].snippet.decription }</div>
+         <div>{ video.snippet.title }</div>
+         <div>{ video.snippet.decription }</div>
        </div>
      </div>
    )

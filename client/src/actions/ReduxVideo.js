@@ -9,7 +9,6 @@ export const video = (video) => {
 }
 
 export const term = (term) => {
-  // console.log('masuk kata pak iyan term', term)
   return {
     type: 'TERM',
     payload: {
@@ -19,6 +18,7 @@ export const term = (term) => {
 }
 
 export const selectedVideo = (data) => {
+  console.log('masuk kata pak iyan data', data.id.videoId)
   return {
     type: 'SELECTED',
     payload: {

@@ -30,12 +30,14 @@ class App extends Component {
       selectedVideo: null,
       term: '',
       videoRedux: store.getState().video.videos,
-      termRedux: store.getState().video.term
+      termRedux: store.getState().video.term,
+      selectedVideoRedux: store.getState().video.selectedVideo
     }
     store.subscribe(()=>{
       this.setState({
         termRedux: store.getState().video.term,
-        videoRedux: store.getState().video.videos
+        videoRedux: store.getState().video.videos,
+        selectedVideoRedux: store.getState().video.selectedVideo
       })
     })
     this.videoSearch('')
@@ -44,10 +46,11 @@ class App extends Component {
     YTSearch({key: API_KEY, term:term }, (data) => {
      this.setState({
        video: data,
-        selectedVideo: data[0],
+      // selectedVideo: data[0],
      })
      store.dispatch(termact(term))
      store.dispatch(videoact(data))
+     store.dispatch(selectVideoact(this.state.selectedVideo))
    })
   }
 
@@ -79,13 +82,13 @@ class App extends Component {
             )}>
           </Route>
             <Route exact path ={'/redux/' } render={(props) => (
-              <Redux_detail_video video={this.state.videoRedux} />
+              <Redux_detail_video video={this.state.selectedVideoRedux} />
             )}>
           </Route>
           <Route exact path={'/redux/'} render={(props) => (
             <Redux_video_list
               onSelect={ selectedVideo => this.setState({ selectedVideo }) }
-              videos={ this.state.video }
+              videos={ this.state.videoRedux }
             />
           )}>
         </Route>

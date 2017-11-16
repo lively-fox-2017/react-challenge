@@ -11,6 +11,7 @@ const VideoReducer = (state=defaultState, action) => {
     case 'TERM':
       return {...state, term: action.payload.term}
     case 'SELECTED':
+      console.log('masuk', action.payload.data);
       return {...state, selectedVideo: action.payload.data}
     default:
       return state

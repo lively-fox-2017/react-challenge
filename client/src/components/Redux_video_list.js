@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 const Redux_video_list = (props) => {
   const videoItems = props.videos.map((video) => {
-    // console.log('ini adalah props videolist',video.id.videoId)
+    // console.log('ini adalah props videolist',video.etag)
     // let routerTo = `/view/:${video.etag}`
     return <div><Link to={'/redux/'} > <Redux_video_list_item
       onSelect={ props.onSelect }
