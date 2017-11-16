@@ -21,9 +21,9 @@ class HomeReactRedux extends Component {
   }
 
   componentWillMount () {
+    this.props.fetchSwapi()
     console.log('jenennge jekek', this.props)
-    this.props.x()
-    this.destroyPreviousActiveHero()
+    // this.destroyPreviousActiveHero()
   }
 
   render () {
@@ -50,7 +50,7 @@ class HomeReactRedux extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    x: () => dispatch(fetchSwapi()),
+    fetchSwapi: () => dispatch(fetchSwapi()),
     destroyActiveHero: () => dispatch(destroyActiveHero)
   }
 }

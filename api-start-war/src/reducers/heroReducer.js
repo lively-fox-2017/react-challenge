@@ -1,6 +1,7 @@
 const initState = {
   heroes: [],
-  activeHero: ''
+  activeHero: '',
+  foo: 'bar'
 }
 
 function heroReducer (state = initState, action) {
