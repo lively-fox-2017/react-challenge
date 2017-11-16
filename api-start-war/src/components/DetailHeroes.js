@@ -20,7 +20,7 @@ class DetailHeroes extends Component {
 
   render () {
     return (
-      <div className="panel panel-default panel-inverse">
+      <div className="panel panel-primary panel-inverse">
         <div className="panel-heading">
           <h3 className="panel-title">
             {this.state.hero.name}
