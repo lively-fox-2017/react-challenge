@@ -3,29 +3,14 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import {
-  fetchById, fetchByIdNotFoundChange
+  fetchById, requestById, fetchByIdNotFoundChange
 } from '../actions/heroActions';
 import HeroPanel from './HeroPanel';
 import RecentMatchesRedux from './RecentMatchesRedux';
 
 class HeroRecentMatchesRedux extends Component {
   componentDidMount() {
-    this.props.fetchById({});
-    window.$openDota.get('/heroes')
-      .then(({ data }) => {
-        const hero = data.filter((datum) => {
-          return datum.id === parseInt(this.props.match.params.id, 10);
-        })[0] || {};
-
-        this.props.fetchById(hero);
-
-        if (!this.props.hero.hasOwnProperty('id')) {
-          this.props.fetchByIdNotFoundChange(true);
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-      })
+    this.props.requestById(this.props.match.params.id);
   }
 
   render() {
@@ -70,6 +55,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchById: (hero) => dispatch(fetchById(hero)),
+    requestById: (id) => dispatch(requestById(id)),
     fetchByIdNotFoundChange: (fetchByIdNotFound) => dispatch(fetchByIdNotFoundChange(fetchByIdNotFound)),
   }
 };

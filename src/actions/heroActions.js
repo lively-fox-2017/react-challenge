@@ -8,7 +8,6 @@ export const fetchHeroes = (heroes) => {
 };
 
 export const requestHeroes = () => {
-
   return (dispatch) => {
     window.$openDota
           .get('/heroes')
@@ -16,10 +15,9 @@ export const requestHeroes = () => {
             dispatch(fetchHeroes(data));
           })
           .catch((err) => {
-            console.error(err);
+            console.log(err);
           });
   };
-
 };
 
 export const fetchById = (hero) => {
@@ -28,6 +26,27 @@ export const fetchById = (hero) => {
     payload: {
       hero
     }
+  };
+};
+
+export const requestById = (id) => {
+  return (dispatch, getState) => {
+    window.$openDota
+          .get('/heroes')
+          .then(({ data }) => {
+            const hero = data.filter((datum) => {
+              return datum.id === parseInt(id, 10);
+            })[0] || {};
+
+            dispatch(fetchById(hero));
+
+            if (!getState().heroReducer.hero.hasOwnProperty('id')) {
+              dispatch(fetchByIdNotFoundChange(true));
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
   };
 };
 
