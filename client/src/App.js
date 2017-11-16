@@ -19,7 +19,6 @@ import Redux_content_search from './components/Redux_content_search'
 import Redux_detail_video from './components/Redux_detail_video'
 import Redux_video_list from './components/Redux_video_list'
 
-
 const API_KEY = 'AIzaSyCa8B0c1rnbPHvSpZrglHaYs6-vgGXdxCg'
 
 class App extends Component {
@@ -46,7 +45,7 @@ class App extends Component {
     YTSearch({key: API_KEY, term:term }, (data) => {
      this.setState({
        video: data,
-      // selectedVideo: data[0],
+       selectedVideo: data[0]
      })
      store.dispatch(termact(term))
      store.dispatch(videoact(data))
@@ -78,7 +77,7 @@ class App extends Component {
           )}>
         </Route>
             <Route exact path ={'/redux/'} render={(props) => (
-              <Redux_content_search onSearch={(term) => this.videoSearch(term)}/>
+              <Redux_content_search onSearch={(termRedux) => this.videoSearch(termRedux)}/>
             )}>
           </Route>
             <Route exact path ={'/redux/' } render={(props) => (
@@ -87,7 +86,7 @@ class App extends Component {
           </Route>
           <Route exact path={'/redux/'} render={(props) => (
             <Redux_video_list
-              onSelect={ selectedVideo => this.setState({ selectedVideo }) }
+              onSelect={ selectedVideoRedux => this.setState({ selectedVideoRedux }) }
               videos={ this.state.videoRedux }
             />
           )}>
