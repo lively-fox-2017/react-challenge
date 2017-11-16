@@ -31,6 +31,8 @@ export const fetchById = (hero) => {
 
 export const requestById = (id) => {
   return (dispatch, getState) => {
+    // Make 'hero' state empty first
+    dispatch(fetchById({}));
     window.$openDota
           .get('/heroes')
           .then(({ data }) => {
