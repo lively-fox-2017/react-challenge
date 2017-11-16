@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import {
-  fetchById, requestById, fetchByIdNotFoundChange
+  requestById,
+  fetchByIdNotFoundChange
 } from '../actions/heroActions';
 import HeroPanel from './HeroPanel';
 import RecentMatchesRedux from './RecentMatchesRedux';
@@ -54,7 +55,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchById: (hero) => dispatch(fetchById(hero)),
     requestById: (id) => dispatch(requestById(id)),
     fetchByIdNotFoundChange: (fetchByIdNotFound) => dispatch(fetchByIdNotFoundChange(fetchByIdNotFound)),
   }

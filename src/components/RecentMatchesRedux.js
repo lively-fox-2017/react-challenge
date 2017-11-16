@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import {
-  fetchMatches,
   requestMatches
 } from '../actions/matchActions';
 
@@ -67,7 +66,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchMatches: (matches) => dispatch(fetchMatches(matches)),
     requestMatches: (heroId) => dispatch(requestMatches(heroId))
   };
 };

@@ -63,7 +63,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchHeroes: (heroes) => dispatch(fetchHeroes(heroes)),
     requestHeroes: () => dispatch(requestHeroes()),
     fetchSearches: (searches) => dispatch(fetchSearches(searches)),
     searchNotFoundChange: (searchNotFound) => dispatch(searchNotFoundChange(searchNotFound)),
