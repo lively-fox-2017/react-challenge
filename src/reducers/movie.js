@@ -1,4 +1,3 @@
-import { combineReducers } from 'redux';
 import { movie } from '../actions/movie';
 
 const defaultState = {
@@ -18,4 +17,4 @@ function movieReducer(state=defaultState, action) {
   return state;
 }
 
-export default combineReducers({ movieReducer })
+export default movieReducer;

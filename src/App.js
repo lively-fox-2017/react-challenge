@@ -9,6 +9,7 @@ import MovieDetailReduxReact from './MovieDetail-redux_react';
 import Header from './Header';
 import SearchMovie from './SearchMovie';
 import HotMovie from './HotMovie';
+import RandomMovieQuote from './RandomMovieQuote';
 
 class App extends Component {
 
@@ -25,7 +26,7 @@ class App extends Component {
           <div>
             <Link to="/"> Home </Link>
 
-            <Route exact path="/" component={ HotMovie }/>
+            <Route exact path="/" component={ RandomMovieQuote }/>
             <Route path="/movie/:id" render={ ({match}) => {return <MovieDetailReduxReact match = {match}/>} }/>
           </div>
 
