@@ -18,6 +18,8 @@ import ArticlesRedux from './ArticleListRedux'
 import ArticleRedux from './ArticleRedux'
 import ArticlesReactRedux from './ArticleListReactRedux'
 import ArticleReactRedux from './ArticleReactRedux'
+import ArticlesReactReduxMiddleware from './ArticleListReactReduxMiddleware'
+import ArticleReactReduxMiddleware from './ArticleReactReduxMiddleware'
 
 class App extends Component {
   constructor() {
@@ -74,6 +76,13 @@ class App extends Component {
               <div>
                 <ArticlesReactRedux />
                 <ArticleReactRedux />
+              </div>
+            )} />
+
+            <Route exact path='/article/reactreduxmiddleware' render={ () => (
+              <div>
+                <ArticlesReactReduxMiddleware />
+                <ArticleReactReduxMiddleware />
               </div>
             )} />
           </div>
