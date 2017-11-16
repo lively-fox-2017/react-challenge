@@ -7,20 +7,26 @@ export const fetchHeroes = (heroes) => {
   };
 };
 
+export const requestHeroes = () => {
+
+  return (dispatch) => {
+    window.$openDota
+          .get('/heroes')
+          .then(({ data }) => {
+            dispatch(fetchHeroes(data));
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+  };
+
+};
+
 export const fetchById = (hero) => {
   return {
     type: 'FETCH_BY_ID',
     payload: {
       hero
-    }
-  };
-};
-
-export const keywordChange = (keyword) => {
-  return {
-    type: 'KEYWORD_CHANGE',
-    payload: {
-      keyword
     }
   };
 };
