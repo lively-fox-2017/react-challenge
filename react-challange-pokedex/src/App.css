@@ -35,3 +35,20 @@
 h1, h2, h3, h4, h5, p {
   font-family: 'Gruppo';
 }
+
+.utama {
+  width: 100%;
+}
+
+.kiri {
+  width: 50%;
+  float: left;
+}
+
+.kanan {
+  width: 50%;
+  float: left;
+}
+/* .TrainerName {
+  padding-top: 
+} */

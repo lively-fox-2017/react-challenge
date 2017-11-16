@@ -6,29 +6,67 @@ import { Route } from 'react-router-dom'
 import Home from './components/home'
 import Header from './components/header'
 import Trainer from './components/trainer'
+import DetailPoke from './components/detailPoke'
+
+//ReactRedux
+import HomeReactRedux from './components/homeReactRedux'
 
 //wrapper
 var Pokedex = require('pokeapi-js-wrapper');
 // var P = new Pokedex.Pokedex();
 
 class App extends Component {
+  constructor(){
+    super()
+    this.state ={
+      pokeBoxApp: {}
+    }
+  }
   render() {
     return (
-      <div className="App">
-        <Header/>
-        <Route
-          exact path ="/"
-          render={props => <Home></Home>}
-        />
-        <Route
-          path ="/detailPoke/:pokename"
-        />
-        <Route
-          exact path="/trainerDetail"
-          render={props => <Trainer className="grid"></Trainer>}
-        />
+      <div className="">
+
+        <div className="">
+          <Header className=""/>
+        </div><br/><br/>
+
+        <div className="mdl-grid">
+          <div className="mdl-cell--5-col">
+          {/* <Home/> */}
+          <Route
+            exact path ="/"
+            render={props => <Home getPokeBox={this.receivePokeBox.bind(this)}></Home>}
+          />
+          <Route
+            exact path="/homeReactRedux"
+              render={props => <HomeReactRedux></HomeReactRedux>}
+          />
+          </div>
+
+          <div className="mdl-cell--6-col">
+          <Route
+            path ="/detailPoke/:pokename"
+              render={props => <DetailPoke pokeBoxDetail={this.state.pokeBoxApp}></DetailPoke>}
+          />
+          <Route
+            exact path="/trainerDetail"
+            render={props => <Trainer className="grid"></Trainer>}
+          />
+          </div>
+        </div>
+
       </div>
     );
+  }
+
+  receivePokeBox (val) {
+    alert('dari depan ' + JSON.stringify(val))
+    console.log('dari depan ' + JSON.stringify(val.length))
+      this.setState({
+        pokeBoxApp: val
+      },()=>{
+        alert(JSON.stringify(this.state.pokeBoxApp) + 'dari depan')
+      })
   }
 
 }
