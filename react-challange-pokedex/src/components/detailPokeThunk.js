@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import { singlePoke } from '../actions/index'
+import { singlePokeThunk } from '../actions/index'
 
 class DetailPokeReactRedux extends React.Component {
     constructor() {
@@ -19,41 +19,9 @@ class DetailPokeReactRedux extends React.Component {
 
     componentWillMount() {
         console.log('FROM DETAIL REACT REDUX', this.props.pokeBoxDetail)
-        // this.props.singlePoke()
-        if (this.props.pokeBoxDetail.name) {
-            var proxy = 'https://cors-anywhere.herokuapp.com/'
-            var urlPoke = `${this.props.pokeBoxDetail.url}`
-            var pokeName = this.props.pokeBoxDetail.name
-
-            axios.get(proxy + urlPoke)
-                .then(({ data }) => {
-                    var pokeStats = {
-                        pokeAbility: data.abilities,
-                        pokeHP: data.stats[4].base_stat,
-                        pokeAtk: data.stats[4].base_stat,
-                        pokeDef: data.stats[3].base_stat,
-                        pokeSpAtk: data.stats[2].base_stat,
-                        pokeSpDef: data.stats[1].base_stat,
-                        pokeSpeed: data.stats[0].base_stat
-                    }
-                    var pokeAbility = {
-                        hidden: data.abilities[0].ability.name,
-                        normal: data.abilities[1].ability.name
-                    }
-                    var urlSprite = `${data.forms[0].url}`
-                    axios.get(proxy + urlPoke)
-                        .then(({ data }) => {
-                            var pokeSprite = data.sprites.front_default
-                            this.props.singlePoke({
-                                name: pokeName,
-                                stats: pokeStats,
-                                sprite: pokeSprite,
-                                ability: pokeAbility
-                            })
-                        })
-                })
+        if (this.props.pokeBoxDetail.url) {
+            this.props.singlePokeThunk(this.props.pokeBoxDetail.url)
         } else {
-            // alert('PLEASE BACK TO HOME')
             return < Redirect to='/' />
         }
     }
@@ -63,7 +31,7 @@ class DetailPokeReactRedux extends React.Component {
             return <div>
                 <h5>CANT GET DATA...PLEASE BACK TO HOME AND TRY AGAIN..</h5>
             </div>
-        } else if (this.props.singlePokemon.name) {
+        } else if (this.props.singlePokemon.sprite) {
             return <div className="demo-card-square mdl-card mdl-shadow--2dp">
                 <div className="" align="center">
                     <img src={this.props.singlePokemon.sprite} alt="POKEMON" />
@@ -94,7 +62,7 @@ class DetailPokeReactRedux extends React.Component {
 }
 
 const mapState = (state) => {
-    // console.log('FROM DETAIL POKE REACT REDUX: ',state)
+    console.log('FROM DETAIL POKE THUNK: ',state)
     return {
         singlePokemon: state.singlePokemon
     }
@@ -102,7 +70,7 @@ const mapState = (state) => {
 
 const mapActions = (dispatch) => {
     return {
-        singlePoke: (payload) => dispatch(singlePoke(payload))
+        singlePokeThunk: (payload) => dispatch(singlePokeThunk(payload))
     }
 }
 

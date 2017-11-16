@@ -40,7 +40,7 @@ class DetailPokeClass extends React.Component{
                 .then(({data})=>{
                     this.setState({
                         pokeAbility: data.abilities,
-                        pokeHP: data.stats[4].base_stat,
+                        pokeHP: data.stats[5].base_stat,
                         pokeAtk: data.stats[4].base_stat,
                         pokeDef: data.stats[3].base_stat,
                         pokeSpAtk: data.stats[2].base_stat,

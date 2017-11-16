@@ -28,20 +28,6 @@ class HomeReactReduxThunk extends React.Component {
 
     componentWillMount() {
         this.props.allPokeThunk()
-        // var proxy = 'https://cors-anywhere.herokuapp.com/'
-        // var urlPoke = 'http://pokeapi.co/api/v2/pokemon/'
-        // // var urlPoke = 'https://swapi.co/api/people'
-        // axios.get(proxy + urlPoke)
-        //     // axios({
-        //     //   method: 'get',
-        //     //   url: proxy + urlPoke,
-        //     // })
-        //     .then(({ data }) => {
-        //         if (data.results) {
-        //             // alert(JSON.stringify(data.results))
-        //             this.props.allPoke(data.results)
-        //         }
-        //     })
     }
 
     showAllPokeReactRedux() {
@@ -53,7 +39,7 @@ class HomeReactReduxThunk extends React.Component {
                     return <div key={singlePoke.name}>
                         <Link
                             onClick={this.sendPokeBox.bind(this, singlePoke)}
-                            to={'/detailPokeReactRedux/' + singlePoke.name}>
+                            to={'/detailPokeReactReduxThunk/' + singlePoke.name}>
                             <p>
                                 {singlePoke.name}
                             </p>

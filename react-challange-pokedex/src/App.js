@@ -7,13 +7,14 @@ import Home from './components/home'
 import Header from './components/header'
 import Trainer from './components/trainer'
 import DetailPoke from './components/detailPoke'
-import DetailPokeReactRedux from './components/detailPokeReactRedux'
 
 //ReactRedux
 import HomeReactRedux from './components/homeReactRedux'
+import DetailPokeReactRedux from './components/detailPokeReactRedux'
 
 //Thunk 
 import HomeThunk from './components/homeThunk'
+import DetailPokeReactReduxThunk from './components/detailPokeThunk'
 //wrapper
 var Pokedex = require('pokeapi-js-wrapper');
 // var P = new Pokedex.Pokedex();
@@ -58,6 +59,10 @@ class App extends Component {
           <Route
             path ="/detailPokeReactRedux/:pokename"
               render={props => <DetailPokeReactRedux pokeBoxDetail={this.state.pokeBoxApp}></DetailPokeReactRedux>}
+          />
+          <Route
+            path="/detailPokeReactReduxThunk/:pokename"
+            render={props => <DetailPokeReactReduxThunk pokeBoxDetail={this.state.pokeBoxApp}></DetailPokeReactReduxThunk>}
           />
           <Route
             exact path="/trainerDetail"
