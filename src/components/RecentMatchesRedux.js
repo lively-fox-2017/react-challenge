@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import {
-  fetchMatches
+  fetchMatches,
+  requestMatches
 } from '../actions/matchActions';
 
 const dotabuffPlayer = 'http://www.dotabuff.com/players/';
@@ -10,14 +11,7 @@ const dotabuffMatch = 'http://www.dotabuff.com/matches/';
 
 class RecentMatchesRedux extends Component {
   componentDidMount() {
-    this.props.fetchMatches([]);
-    window.$openDota.get('/heroes/' + this.props.id + '/matches')
-      .then(({ data }) => {
-        this.props.fetchMatches(data.slice(0, 5)); // limit only 5
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    this.props.requestMatches(this.props.id);
   }
 
   render() {
@@ -74,6 +68,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchMatches: (matches) => dispatch(fetchMatches(matches)),
+    requestMatches: (heroId) => dispatch(requestMatches(heroId))
   };
 };
 
