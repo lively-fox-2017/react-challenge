@@ -39,34 +39,34 @@ class App extends Component {
           {/* <Home/> */}
           <Route
             exact path ="/"
-            render={props => <Home getPokeBox={this.receivePokeBox.bind(this)}></Home>}
+            render={({match, location, history}) => <Home getPokeBox={this.receivePokeBox.bind(this)}></Home>}
           />
           <Route
             exact path="/homeReactRedux"
-              render={props => <HomeReactRedux getPokeBox={this.receivePokeBox.bind(this)}></HomeReactRedux>}
+              render={({ match, location, history }) => <HomeReactRedux getPokeBox={this.receivePokeBox.bind(this)}></HomeReactRedux>}
           />
           <Route
             exact path="/homeReactReduxThunk"
-              render={props => <HomeThunk getPokeBox={this.receivePokeBox.bind(this)}></HomeThunk>}
+              render={({ match, location, history }) => <HomeThunk getPokeBox={this.receivePokeBox.bind(this)}></HomeThunk>}
           />
           </div>
 
           <div className="mdl-cell--6-col">
           <Route
-            path ="/detailPoke/:pokename"
-              render={props => <DetailPoke pokeBoxDetail={this.state.pokeBoxApp}></DetailPoke>}
+            path ="/detailPoke/:pokename/:id"
+              render={({match}) => <DetailPoke pokeId={match.params.id} pokeBoxDetail={this.state.pokeBoxApp}></DetailPoke>}
           />
           <Route
-            path ="/detailPokeReactRedux/:pokename"
-              render={props => <DetailPokeReactRedux pokeBoxDetail={this.state.pokeBoxApp}></DetailPokeReactRedux>}
+            path ="/detailPokeReactRedux/:pokename/:id"
+              render={({ match }) => <DetailPokeReactRedux pokeId={match.params.id} pokeBoxDetail={this.state.pokeBoxApp}></DetailPokeReactRedux>}
           />
           <Route
-            path="/detailPokeReactReduxThunk/:pokename"
-            render={props => <DetailPokeReactReduxThunk pokeBoxDetail={this.state.pokeBoxApp}></DetailPokeReactReduxThunk>}
+            path="/detailPokeReactReduxThunk/:pokename/:id"
+              render={({ match }) => <DetailPokeReactReduxThunk pokeId={match.params.id} pokeBoxDetail={this.state.pokeBoxApp}></DetailPokeReactReduxThunk>}
           />
           <Route
             exact path="/trainerDetail"
-            render={props => <Trainer className="grid"></Trainer>}
+            render={() => <Trainer className="grid"></Trainer>}
           />
           </div>
         </div>

@@ -29,15 +29,14 @@ class DetailPokeClass extends React.Component{
         )
     }
     componentWillMount() {
-        console.log(JSON.stringify(this.props.pokeBoxDetail.url)+ ' DARI BELAKANG')
-        if (this.props.pokeBoxDetail.name) {
-            this.setState({
-                pokeName: this.props.pokeBoxDetail.name
-            }, ()=>{
+        console.log('LOG DETAIL POKE WILL MOUNT', JSON.stringify(this.props.pokeId))
+        if (this.props.pokeId) {
                 var proxy = 'https://cors-anywhere.herokuapp.com/'
-                var urlPoke = `${this.props.pokeBoxDetail.url}`
+                var urlPoke = `https://pokeapi.co/api/v2/pokemon/${this.props.pokeId}/`
                 axios.get(proxy + urlPoke)
                 .then(({data})=>{
+                    var pokemonName = data.forms[0].name
+                    console.log('NAMA POKE', data.forms[0].name)
                     this.setState({
                         pokeAbility: data.abilities,
                         pokeHP: data.stats[5].base_stat,
@@ -46,6 +45,9 @@ class DetailPokeClass extends React.Component{
                         pokeSpAtk: data.stats[2].base_stat,
                         pokeSpDef: data.stats[1].base_stat,
                         pokeSpeed: data.stats[0].base_stat,
+                        pokeName: data.forms[0].name
+                    },()=>{
+                        console.log('HP POKE', this.state.pokeHP)
                     })
                     var urlSprite = `${data.forms[0].url}`
                     axios.get(proxy+urlSprite)
@@ -58,7 +60,7 @@ class DetailPokeClass extends React.Component{
                     })
                     console.log('INI FETCH DATA BULBA: ', data)
                 })
-            })
+            // })
         } else {
             // alert('PLEASE BACK TO HOME')
             return < Redirect to= '/' />
@@ -66,7 +68,7 @@ class DetailPokeClass extends React.Component{
     }
 
     mountedComponent () {
-        if (!this.props.pokeBoxDetail.name) {
+        if (!this.props.pokeId) {
             return <div>
                 <h5>CANT GET DATA...PLEASE BACK TO HOME AND TRY AGAIN..</h5>
             </div>
@@ -76,7 +78,7 @@ class DetailPokeClass extends React.Component{
                     <img src={this.state.pokeSprite} alt="POKEMON" />
                 </div>
                 <div className="mdl-card__title mdl-card--expand">
-                    <h2 className="mdl-card__title-text">{this.props.pokeBoxDetail.name}</h2>
+                    <h2 className="mdl-card__title-text">{this.state.pokeName}</h2>
                 </div>
                 <div className="mdl-card__supporting-text">
                     <p>HP: {this.state.pokeHP} ,Speed: {this.state.pokeSpeed}</p>

@@ -18,16 +18,17 @@ class DetailPokeReactRedux extends React.Component {
     }
 
     componentWillMount () {
-        console.log('FROM DETAIL REACT REDUX', this.props.pokeBoxDetail)
+        console.log('FROM DETAIL REACT REDUX', this.props.pokeId)
         // this.props.singlePoke()
-        if (this.props.pokeBoxDetail.name) {
+        if (this.props.pokeId) {
             var proxy    = 'https://cors-anywhere.herokuapp.com/'
-            var urlPoke  = `${this.props.pokeBoxDetail.url}`
-            var pokeName = this.props.pokeBoxDetail.name
-
+            var urlPoke = `https://pokeapi.co/api/v2/pokemon/${this.props.pokeId}/`
+            // var urlPoke  = `${this.props.pokeBoxDetail.url}`
+            
             axios.get(proxy + urlPoke)
-                    .then(({ data }) => {
-                        var pokeStats = {
+            .then(({ data }) => {
+                var pokeName = data.forms[0].name
+                var pokeStats = {
                             pokeAbility: data.abilities,
                             pokeHP: data.stats[5].base_stat,
                             pokeAtk: data.stats[4].base_stat,
@@ -59,7 +60,7 @@ class DetailPokeReactRedux extends React.Component {
     }
 
     mountedComponent () {
-        if (!this.props.pokeBoxDetail.name) {
+        if (!this.props.pokeId) {
             return <div>
                 <h5>CANT GET DATA...PLEASE BACK TO HOME AND TRY AGAIN..</h5>
             </div>

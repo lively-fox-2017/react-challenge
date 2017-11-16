@@ -39,7 +39,8 @@ export const allPokeThunk = (params) => {
 
 export const singlePokeThunk = (params) => {
     console.log('FROM ACTIONS SINGLE POKE', params)
-    var urlSinglePoke = params
+    var idPoke = params
+    var urlSinglePoke = `http://pokeapi.co/api/v2/pokemon/${idPoke}/`
     return (dispatch) => {
         http.get(`/${urlSinglePoke}`)
         .then(({data}) =>{

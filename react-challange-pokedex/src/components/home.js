@@ -55,11 +55,13 @@ class HomeClass extends React.Component {
         if (this.state.pokeBox.length > 0) {
             return <div>
                 {this.state.pokeBox.map(singlePoke=>{
-                    // var detailPoke = `/detailPoke/${singlePoke.name}`
+                    var urlDataPoke      = singlePoke.url
+                    var splitDataUrlPoke = urlDataPoke.split('/')
+                    var idPoke = splitDataUrlPoke[splitDataUrlPoke.length-2]
                     return <div key={singlePoke.name}>
                         <Link 
                         onClick={this.sendPokeBox.bind(this,singlePoke)}
-                        to={'/detailPoke/' + singlePoke.name}>
+                        to={'/detailPoke/' + singlePoke.name +'/'+ idPoke}>
                             <p>
                             {singlePoke.name}
                             </p>

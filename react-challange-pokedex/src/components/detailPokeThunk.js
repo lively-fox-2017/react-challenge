@@ -19,15 +19,15 @@ class DetailPokeReactRedux extends React.Component {
 
     componentWillMount() {
         console.log('FROM DETAIL REACT REDUX', this.props.pokeBoxDetail)
-        if (this.props.pokeBoxDetail.url) {
-            this.props.singlePokeThunk(this.props.pokeBoxDetail.url)
+        if (this.props.pokeId) {
+            this.props.singlePokeThunk(this.props.pokeId)
         } else {
             return < Redirect to='/' />
         }
     }
 
     mountedComponent() {
-        if (!this.props.pokeBoxDetail.name) {
+        if (!this.props.pokeId) {
             return <div>
                 <h5>CANT GET DATA...PLEASE BACK TO HOME AND TRY AGAIN..</h5>
             </div>

@@ -48,11 +48,14 @@ class HomeReactRedux extends React.Component {
             console.log('FROM SHOW ALL POKE REACT REDUX', this.props.pokeBox)
             return <div>
                 {this.props.pokeBox.map(singlePoke => {
-                    // var detailPoke = `/detailPoke/${singlePoke.name}`
+                    var urlDataPoke = singlePoke.url
+                    var splitDataUrlPoke = urlDataPoke.split('/')
+                    var idPoke = splitDataUrlPoke[splitDataUrlPoke.length - 2]
+
                     return <div key={singlePoke.name}>
                         <Link
                             onClick={this.sendPokeBox.bind(this, singlePoke)}
-                            to={'/detailPokeReactRedux/' + singlePoke.name}>
+                            to={'/detailPokeReactRedux/' + singlePoke.name +'/' + idPoke}>
                             <p>
                                 {singlePoke.name}
                             </p>
