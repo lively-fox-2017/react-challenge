@@ -9,6 +9,7 @@ import { setRecipees } from './actions/RecipeeActions';
 import Nav from './components/Nav';
 import Home from './components/Home';
 import Recipee from './components/Recipee';
+import Restaurant from './components/RestaurantList';
 
 import './App.css';
 
@@ -42,6 +43,7 @@ class App extends Component {
           <div>
             <Nav/>
             <Route exact path='/' component={Home}/>
+            <Route exact path='/restaurants' component={Restaurant}/>
             <Route path='/recipee/:id' component={Recipee} />
           </div>
         </Router>
