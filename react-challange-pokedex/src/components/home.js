@@ -16,7 +16,7 @@ class HomeClass extends React.Component {
         return (
             <div>
                 <div className="sidebar-overlay">
-                    {/* <h1>This is Home Page</h1> */}
+                    <h1>Home Page</h1>
                     <ul className="nav sidebar-nav">
                         <li>
                             <Link to="/trainerDetail">

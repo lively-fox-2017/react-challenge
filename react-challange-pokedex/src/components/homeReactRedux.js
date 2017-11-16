@@ -3,7 +3,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import { allPoke } from '../actions/index'
+import { allPoke,  } from '../actions/index'
 
 class HomeReactRedux extends React.Component {
     constructor() {
@@ -13,8 +13,15 @@ class HomeReactRedux extends React.Component {
     render () {
         return(
             <div>
-                <h1>Page React-Redux</h1>
-                {this.showAllPokeReactRedux.call(this)}
+                <h1>Home Page React-Redux</h1>
+                <ul>
+                    <li>
+                        <Link to="/trainerDetail">
+                            <h4>Trainer Profile</h4>
+                        </Link>
+                        {this.showAllPokeReactRedux.call(this)}
+                    </li>
+                </ul>
             </div>
         )
     }
@@ -29,7 +36,6 @@ class HomeReactRedux extends React.Component {
             //   url: proxy + urlPoke,
             // })
             .then(({ data }) => {
-                console.log('FROM REACT-REDUX', data.results)
                 if (data.results) {
                     // alert(JSON.stringify(data.results))
                     this.props.allPoke(data.results)
@@ -45,8 +51,8 @@ class HomeReactRedux extends React.Component {
                     // var detailPoke = `/detailPoke/${singlePoke.name}`
                     return <div key={singlePoke.name}>
                         <Link
-                            // onClick={this.sendPokeBox.bind(this, singlePoke)}
-                            to={'/detailPoke/' + singlePoke.name}>
+                            onClick={this.sendPokeBox.bind(this, singlePoke)}
+                            to={'/detailPokeReactRedux/' + singlePoke.name}>
                             <p>
                                 {singlePoke.name}
                             </p>
@@ -59,28 +65,32 @@ class HomeReactRedux extends React.Component {
                 <h3>Waiting to fetch pokemon data....</h3>
             </div>
         }
-        
+    }
+
+    sendPokeBox (val) {
+        this.props.getPokeBox(val)
     }
 }
 
 
 
-const mapStateToProps = (state) => {
-    console.log(state)
+const mapState = (state) => {
+    console.log('THIS IS HOME REDUCER REACT REDUX', state)
     return {
         pokeBox: state.pokeBox
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapActions = (dispatch) => {
     return {
         allPoke: (payload) => dispatch(allPoke(payload))
     }
 }
 
 const connectedToHomeReactRedux = connect(
-    mapStateToProps,
-    mapDispatchToProps
+    mapState,
+    mapActions
 )(HomeReactRedux)
+
 
 export default (connectedToHomeReactRedux)

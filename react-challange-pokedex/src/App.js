@@ -7,6 +7,7 @@ import Home from './components/home'
 import Header from './components/header'
 import Trainer from './components/trainer'
 import DetailPoke from './components/detailPoke'
+import DetailPokeReactRedux from './components/detailPokeReactRedux'
 
 //ReactRedux
 import HomeReactRedux from './components/homeReactRedux'
@@ -39,7 +40,7 @@ class App extends Component {
           />
           <Route
             exact path="/homeReactRedux"
-              render={props => <HomeReactRedux></HomeReactRedux>}
+              render={props => <HomeReactRedux getPokeBox={this.receivePokeBox.bind(this)}></HomeReactRedux>}
           />
           </div>
 
@@ -47,6 +48,10 @@ class App extends Component {
           <Route
             path ="/detailPoke/:pokename"
               render={props => <DetailPoke pokeBoxDetail={this.state.pokeBoxApp}></DetailPoke>}
+          />
+          <Route
+            path ="/detailPokeReactRedux/:pokename"
+              render={props => <DetailPokeReactRedux pokeBoxDetail={this.state.pokeBoxApp}></DetailPokeReactRedux>}
           />
           <Route
             exact path="/trainerDetail"
@@ -60,8 +65,7 @@ class App extends Component {
   }
 
   receivePokeBox (val) {
-    alert('dari depan ' + JSON.stringify(val))
-    console.log('dari depan ' + JSON.stringify(val.length))
+    console.log('FROM APP JS' + JSON.stringify(val.length))
       this.setState({
         pokeBoxApp: val
       },()=>{
