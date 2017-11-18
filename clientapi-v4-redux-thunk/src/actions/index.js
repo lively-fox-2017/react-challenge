@@ -4,7 +4,6 @@ import Axios from 'axios';
 const apiUrl = 'https://newsapi.org/v1/articles?source=abc-news-au&sortBy=top&apiKey=080e457774e54e00b8fd9315ed37c24d';
 
 export const getNewsSuccess = (news) => {
-  // console.log(typeof actionTypes.GET_NEWS_SUCCESS)
   return {
     type: actionTypes.GET_NEWS_SUCCESS,
     news
@@ -35,7 +34,6 @@ export const getNewsOne = (nilai) => {
   return (dispatch) => {
     return Axios.get(apiUrl)
       .then(response => {
-        console.log('Taaaaiiiiiiii', response.data.articles[nilai])
         dispatch(getNewsOneSuccess(response.data.articles[nilai]))
       })
       .catch(error => {

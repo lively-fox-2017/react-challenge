@@ -20,7 +20,6 @@ class App extends Component {
 
   xyz (index) {
     // let params = window.location.pathname
-    // console.log(params);
     // let panjangparams = Number(params[2])
     this.props.getNewsOne(index)
   }
@@ -30,11 +29,9 @@ class App extends Component {
   }
   render() {
 
-    console.log('disini', this.props.news)
     let cekParam = window.location.pathname.split('/')
     let params = cekParam[2]
 
-    console.log('angka', params)
 
     return (
       <Router>

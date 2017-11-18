@@ -29,7 +29,6 @@ class Berita extends Component {
   }
 
   render() {
-    console.log(this.props.newsone)
     return (
       <div className="App">
       <img className="image img-responsive" src={this.props.newsone.urlToImage} />
