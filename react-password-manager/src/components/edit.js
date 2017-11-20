@@ -33,6 +33,11 @@ class Main extends Component {
     render() {
         console.log(this.props.detail, 'render')
         const { URL,username,password } = this.state
+        const upperCase = /^(?=.*\d)(?=.*[A-Z]).+$/;
+        const lowerCase = /^(?=.*[a-z])(?=.*\d).+$/;
+        const specialCase =/^(?=.*\d)(?=.*(_|[^\w])).+$/;
+        const number =/^(?=.*[0-9])(?=.*\d).+$/;
+        const minLength=/^(?=.*\d)(.{5,15}).+$/;
         return (
             <div><table>
                     <thead>
@@ -77,8 +82,28 @@ class Main extends Component {
                   Password:
                   <input name="password" type="password" value={password} onChange={this.handleChange} />
                 </label>
-                <input type="submit" value="Submit" />
+                <br/>
+                {upperCase.test(this.state.password) && lowerCase.test(this.state.password) && specialCase.test(this.state.password)
+                && number.test(this.state.password) && minLength.test(this.state.password) ?
+                <input type="submit" value="Submit" />:
+                <div></div>
+                }
                 </form>
+                {upperCase.test(this.state.password) ?
+                <div>Has one uppercase</div>:
+                <div>Has no uppercase</div>}
+                {lowerCase.test(this.state.password) ?
+                <div>Has one lowercase</div>:
+                <div>Has no lowercase</div>}
+                {specialCase.test(this.state.password) ?
+                <div>Has one specialcase</div>:
+                <div>Has no specialcase</div>}
+                {number.test(this.state.password) ?
+                <div>Has one number</div>:
+                <div>Has no number</div>}
+                {minLength.test(this.state.password) ?
+                <div>Length is above 5</div>:
+                <div>Length is below 5 or over 15</div>}
             </div>
         )
     }

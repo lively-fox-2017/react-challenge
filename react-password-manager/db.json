@@ -7,28 +7,16 @@
       "id": 1
     },
     {
-      "password": "satu1!M",
-      "username": "gason",
+      "password": "satu1!X",
+      "username": "mason",
       "URL": "http://hacktiv8.com",
       "id": 2
     },
     {
-      "password": "satu1!M",
+      "password": "satu1!B",
       "username": "yason",
-      "URL": "http://hacktiv8.com",
+      "URL": "http://hacktiv9.com",
       "id": 3
-    },
-    {
-      "password": "satu1!M",
-      "username": "nason",
-      "URL": "http://hacktiv8.com",
-      "id": 4
-    },
-    {
-      "password": "satu1!X",
-      "username": "mason",
-      "URL": "http://hacktiv8.com",
-      "id": 5
     }
   ]
 }
