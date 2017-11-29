@@ -1,0 +1,67 @@
+nav {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 32px 0px;
+}
+nav img {
+  width: 128px;
+}
+.recipee-list-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.recipee-list-wrapper .recipee-item {
+  width: 40%;
+  display: flex;
+  align-items: center;
+  border: 1px solid #cdcdcd;
+}
+.recipee-list-wrapper .recipee-item img {
+  width: 100px;
+  margin-right: 36px;
+}
+.recipee-list-wrapper .recipee-item h2 {
+  font-size: 16px;
+  color: teal;
+  list-style-type: none;
+}
+.recipee-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+.recipee-wrapper img {
+  width: 100px;
+}
+
+.recipee-wrapper div {
+  width: 70%;
+}
+
+.recipee-wrapper a {
+  width: 15%;
+}
+.recipee-wrapper:last-child {
+  margin-bottom: 0;
+}
+#restaurant-container {
+  padding: 16px 64px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+#restaurant {
+  width: 380px;
+}
+#restaurant img {
+  width: 100%;
+}
+#restaurant-img {
+  width: 100%;
+  height: 250px;
+}
