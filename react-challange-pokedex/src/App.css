@@ -1,0 +1,54 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 2s linear;
+  height: 50px;
+  /* padding-top: 50px; */
+  margin-bottom: -10px
+}
+
+.App-header {
+  background-color: teal;
+  height: 100px;
+  padding: 10px;
+  color: silver;
+}
+
+.App-title {
+  /* padding-top: -10px; */
+
+  font-size: 1.6em;
+  font-family: 'Gruppo';
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+h1, h2, h3, h4, h5, p {
+  font-family: 'Gruppo';
+}
+
+.utama {
+  width: 100%;
+}
+
+.kiri {
+  width: 50%;
+  float: left;
+}
+
+.kanan {
+  width: 50%;
+  float: left;
+}
+/* .TrainerName {
+  padding-top: 
+} */
